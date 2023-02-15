@@ -51,7 +51,7 @@ def write_data(data):
               'p2_surface_rating', 'p2_surface_dev', 'p2_w', 'p2_l', 'p2_surface_w', 'p2_surface_l', 'p1_win']
     player_dict = {}
 
-    with open('data/2010_tournaments.csv', 'w', newline='') as csvfile:
+    with open('data/matches.csv', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         writer.writerow(header)
 
