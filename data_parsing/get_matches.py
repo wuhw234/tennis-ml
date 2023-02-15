@@ -7,33 +7,6 @@ def get_training_data():
     match_data = gather_training_data()
     write_data(match_data, 'matches.csv')
 
-def get_validation_data():
-    match_data = gather_validation_data()
-    write_data(match_data, 'validation.csv')
-
-def gather_validation_data():
-    match_data = []
-    for year in range(2016, 2018):
-        path1 = f'tennis_atp/atp_matches_{year}.csv'
-        path2 = f'tennis_atp/atp_matches_qual_chall_{year}.csv'
-        with open(path1, newline='') as readfile:
-            reader = csv.reader(readfile, delimiter=',')
-
-            for row in reader:
-                if invalid_entry(row):
-                    continue
-                match_data.append(row)
-        with open(path2, newline='') as readfile:
-            reader = csv.reader(readfile, delimiter=',')
-
-            for row in reader:
-                if invalid_entry(row):
-                    continue
-                match_data.append(row)
-
-
-    return sorted(match_data, key=lambda row:row[5])
-
 def gather_training_data():
     match_data = []
     for year in range(2010, 2016):
@@ -240,5 +213,4 @@ def get_tournament_dict():
     return tournament_dict
 
 if __name__ == '__main__':
-    # get_training_data()
-    get_validation_data()
+    get_training_data()
