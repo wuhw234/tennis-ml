@@ -7,10 +7,8 @@ def main():
 
 def get_tournament_names():
     unique_names = set()
-    for year in range(2010, 2024):
-        get_atp_matches(unique_names)
-        get_challenger_matches(unique_names)
-        # get_itf_matches(unique_names)
+    get_atp_matches(unique_names)
+    get_challenger_matches(unique_names)
 
     for name in unique_names:
         print(name)
@@ -30,15 +28,6 @@ def get_atp_matches(unique_names):
 def get_challenger_matches(unique_names):
     for year in range(2010, 2024):
         path = f'tennis_atp/atp_matches_qual_chall_{year}.csv'
-        with open(path, newline='') as csvfile:
-            reader = csv.reader(csvfile, delimiter=',')
-            for row in reader:
-                tournament_name = row[1]
-                unique_names.add(tournament_name)
-
-def get_itf_matches(unique_names):
-    for year in range(2010, 2024):
-        path = f'tennis_atp/atp_matches_futures_{year}.csv'
         with open(path, newline='') as csvfile:
             reader = csv.reader(csvfile, delimiter=',')
             for row in reader:

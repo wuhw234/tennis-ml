@@ -21,6 +21,8 @@ OTHER DEALINGS IN THE SOFTWARE.
 """
 
 import math
+from datetime import date
+
 
 class Player:
     # Class attribute
@@ -176,9 +178,8 @@ class Player:
         """
         return 1 / math.sqrt(1 + 3 * math.pow(RD, 2) / math.pow(math.pi, 2))
     def _inactivity_update(self, periods, constant):
-       old_rd = self.__rd
-       self.__rd = min(math.sqrt(old_rd**2 + periods * constant**2), 350)
-       print('new rd', min(math.sqrt(old_rd**2 + periods * constant**2), 350))
+       old_rd = self.getRd()
+       self.setRd(min(math.sqrt(old_rd**2 + periods * constant**2), 350))
         
     def did_not_compete(self, periods, constant=50):
         """ Applies Step 6 of the algorithm. Use this for
@@ -194,8 +195,20 @@ if __name__ == '__main__':
    p1_rating, p1_rd = p1.getRating(), p1.getRd()
    p2_rating, p2_rd = p2.getRating(), p2.getRd()
    print(p1_rating, p1_rd)
-   p1.update_player([p2_rating],[p2_rd], [True])
+   p1.update_player([p2_rating],[p2_rd], [False])
    p1_rating, p1_rd = p1.getRating(), p1.getRd()
    print(p1_rating, p1_rd)
-   p1.did_not_compete(8)
-   print(p1_rating, p1_rd)
+   p1.did_not_compete(0)
+   p1_rating, p1_rd = p1.getRating(), p1.getRd()
+   print('new rd', p1_rating, p1_rd)
+   
+   
+   a = '19760710'
+   b = '19761004'
+   a_year, a_month, a_day = int(a[:4]), int(a[4:6]), int(a[6:])
+   b_year, b_month, b_day = int(b[:4]), int(b[4:6]), int(b[6:])
+   a_date = date(a_year, a_month, a_day)
+   b_date = date(b_year, b_month, b_day)
+   diff = b_date - a_date
+   print(diff)
+   print(a_date.month)
