@@ -3,11 +3,38 @@ import random
 from glicko2 import Player
 from datetime import date
 
-def main():
-    match_data = gather_data()
-    write_data(match_data)
+def get_training_data():
+    match_data = gather_training_data()
+    write_data(match_data, 'matches.csv')
 
-def gather_data():
+def get_validation_data():
+    match_data = gather_validation_data()
+    write_data(match_data, 'validation.csv')
+
+def gather_validation_data():
+    match_data = []
+    for year in range(2016, 2018):
+        path1 = f'tennis_atp/atp_matches_{year}.csv'
+        path2 = f'tennis_atp/atp_matches_qual_chall_{year}.csv'
+        with open(path1, newline='') as readfile:
+            reader = csv.reader(readfile, delimiter=',')
+
+            for row in reader:
+                if invalid_entry(row):
+                    continue
+                match_data.append(row)
+        with open(path2, newline='') as readfile:
+            reader = csv.reader(readfile, delimiter=',')
+
+            for row in reader:
+                if invalid_entry(row):
+                    continue
+                match_data.append(row)
+
+
+    return sorted(match_data, key=lambda row:row[5])
+
+def gather_training_data():
     match_data = []
     for year in range(2010, 2016):
         path1 = f'tennis_atp/atp_matches_{year}.csv'
@@ -43,7 +70,7 @@ def invalid_entry(row):
     else:
         return False
 
-def write_data(data):
+def write_data(data, filename):
     header = ['match_hash','tourney_name','tourney_date','is_hard', 'is_clay', 'is_grass',
               'is_bo5', 'p1_name', 'p2_name', 'p1_height', 'p1_lefty', 'p1_age','p1_home', 'p1_rating', 'p1_dev',
               'p1_surface_rating', 'p1_surface_dev', 'p1_w', 'p1_l', 'p1_surface_w', 'p1_surface_l',
@@ -51,7 +78,7 @@ def write_data(data):
               'p2_surface_rating', 'p2_surface_dev', 'p2_w', 'p2_l', 'p2_surface_w', 'p2_surface_l', 'p1_win']
     player_dict = {}
 
-    with open('data/matches.csv', 'w', newline='') as csvfile:
+    with open(f'data/{filename}', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         writer.writerow(header)
 
@@ -213,4 +240,5 @@ def get_tournament_dict():
     return tournament_dict
 
 if __name__ == '__main__':
-    main()
+    # get_training_data()
+    get_validation_data()
