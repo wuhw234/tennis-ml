@@ -195,7 +195,6 @@ if __name__ == '__main__':
    p1_rating, p1_rd = p1.getRating(), p1.getRd()
    p2_rating, p2_rd = p2.getRating(), p2.getRd()
    print(p1_rating, p1_rd)
-   p1.update_player([p2_rating],[p2_rd], [False])
    p1_rating, p1_rd = p1.getRating(), p1.getRd()
    print(p1_rating, p1_rd)
    p1.did_not_compete(0)

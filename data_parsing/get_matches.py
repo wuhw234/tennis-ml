@@ -3,13 +3,13 @@ import random
 from glicko2 import Player
 from datetime import date
 
-def get_training_data():
-    match_data = gather_training_data()
+def get_data():
+    match_data = gather_data()
     write_data(match_data, 'matches.csv')
 
-def gather_training_data():
+def gather_data():
     match_data = []
-    for year in range(2010, 2016):
+    for year in range(2010, 2023):
         path1 = f'tennis_atp/atp_matches_{year}.csv'
         path2 = f'tennis_atp/atp_matches_qual_chall_{year}.csv'
         with open(path1, newline='') as readfile:
@@ -27,7 +27,6 @@ def gather_training_data():
                     continue
                 match_data.append(row)
 
-
     return sorted(match_data, key=lambda row:row[5])
             
 def invalid_entry(row):
@@ -35,6 +34,8 @@ def invalid_entry(row):
     surface = row[2]
     score = row[23]
     if 'Davis Cup' in tournament_name:
+        return True
+    elif not row[12] or not row[14] or not row[20] or not row[22]: #if height or age is missing
         return True
     elif any(c.isalpha() for c in score):
         return True
@@ -46,9 +47,9 @@ def invalid_entry(row):
 def write_data(data, filename):
     header = ['match_hash','tourney_name','tourney_date','is_hard', 'is_clay', 'is_grass',
               'is_bo5', 'p1_name', 'p2_name', 'p1_height', 'p1_lefty', 'p1_age','p1_home', 'p1_rating', 'p1_dev',
-              'p1_surface_rating', 'p1_surface_dev', 'p1_w', 'p1_l', 'p1_surface_w', 'p1_surface_l',
+              'p1_surface_rating', 'p1_surface_dev', 'p1_recent_rating', 'p1_w', 'p1_l', 'p1_surface_w', 'p1_surface_l','p1_inactive_days',
               'p2_height', 'p2_lefty', 'p2_age','p2_home', 'p2_rating', 'p2_dev',
-              'p2_surface_rating', 'p2_surface_dev', 'p2_w', 'p2_l', 'p2_surface_w', 'p2_surface_l', 'p1_win']
+              'p2_surface_rating', 'p2_surface_dev', 'p2_recent_rating', 'p2_w', 'p2_l', 'p2_surface_w', 'p2_surface_l', 'p2_inactive_days', 'p1_win']
     player_dict = {}
 
     with open(f'data/{filename}', 'w', newline='') as csvfile:
@@ -106,6 +107,9 @@ def write_row(writer, row, player_dict):
     curr_year, curr_month, curr_day = int(tourney_date[:4]), int(tourney_date[4:6]), int(tourney_date[6:])
     curr_date = date(curr_year, curr_month, curr_day)
 
+    p1_inactive_days = get_time_since_last_match(p1, curr_date)
+    p2_inactive_days = get_time_since_last_match(p2, curr_date)
+
     update_inactivity(p1, curr_date, 'overall')
     update_inactivity(p2, curr_date, 'overall')
 
@@ -124,14 +128,46 @@ def write_row(writer, row, player_dict):
 
     match_hash = str(curr_year) + winner_name[0] + winner_rank + loser_name[0] + loser_rank
 
+    p1_recent_rating = get_recent_rating(p1)
+    p2_recent_rating = get_recent_rating(p2)
 
     writer.writerow([match_hash, tourney_name, tourney_date, is_hard, is_clay, is_grass, 
                      is_bo5, p1_name, p2_name, p1_height, p1_lefty, p1_age, p1_home, p1_rating, p1_deviation,
-                     p1_surface_rating, p1_surface_deviation, p1_w, p1_l, p1_surface_w, p1_surface_l,
-                     p2_height, p2_lefty, p2_age, p2_home, p2_rating, p2_deviation,
-                     p2_surface_rating, p2_surface_deviation, p2_w, p2_l, p2_surface_w, p2_surface_l, p1_win])
+                     p1_surface_rating, p1_surface_deviation, p1_recent_rating, p1_w, p1_l, p1_surface_w,
+                     p1_surface_l, p1_inactive_days, p2_height, p2_lefty, p2_age, p2_home, p2_rating, p2_deviation,
+                     p2_surface_rating, p2_surface_deviation, p2_recent_rating, 
+                     p2_w, p2_l, p2_surface_w, p2_surface_l, p2_inactive_days, p1_win])
     # update glicko ratings and wins and losses
     update_ratings(p1, p2, p1_win, tourney_surface)
+    update_recent_rating(p1, p2_rating, p2_deviation, True if p1_win else False)
+    update_recent_rating(p2, p1_rating, p1_deviation, False if p1_win else True)
+
+
+def get_recent_rating(player):
+    player_rating = Player()
+    recent_matches, recent_dev, recent_results = player['recent_matches'], player['recent_dev'], player['recent_results']
+    if not recent_matches:
+        return player_rating.getRating()
+    
+    player_rating.update_player(recent_matches, recent_dev, recent_results)
+
+    return player_rating.getRating()
+
+def update_recent_rating(player, opponent_rating, opponent_dev, result):
+    if len(player['recent_matches']) > 13:
+        player['recent_matches'].pop(0)
+        player['recent_dev'].pop(0)
+        player['recent_results'].pop(0)
+    player['recent_matches'].append(opponent_rating)
+    player['recent_dev'].append(opponent_dev)
+    player['recent_results'].append(result)
+
+def get_time_since_last_match(player, curr_date):
+    last_match = player['last_match']
+    year, month, day = int(last_match[:4]), int(last_match[4:6]), int(last_match[6:])
+    prev_date = date(year, month, day)
+    inactive_days = curr_date - prev_date
+    return inactive_days.days
 
 def update_ratings(p1, p2, p1_win, surface):
     p1_rating, p1_dev = p1['overall'].getRating(), p1['overall'].getRd()
@@ -162,7 +198,8 @@ def initialize_dict(player_dict, name, tourney_date):
                                  'last_match': tourney_date, 'last_clay_match': tourney_date,
                                  'last_hard_match': tourney_date, 'last_grass_match': tourney_date,
                                  'w': 0, 'l': 0, 'Clay_w': 0, 'Clay_l': 0, 'Hard_w': 0, 'Hard_l': 0,
-                                 'Grass_w': 0, 'Grass_l': 0 }
+                                 'Grass_w': 0, 'Grass_l': 0, 'recent_matches': [], 'recent_dev': [],
+                                 'recent_results': [] }
 
 def update_inactivity(player, curr_date, rating_type):
     if rating_type == 'overall':
@@ -213,4 +250,4 @@ def get_tournament_dict():
     return tournament_dict
 
 if __name__ == '__main__':
-    get_training_data()
+    get_data()
