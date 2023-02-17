@@ -3,13 +3,13 @@ import random
 from glicko2 import Player
 from datetime import date
 
-def get_data():
-    match_data = gather_data()
-    write_data(match_data, 'matches.csv')
+def get_data(start_year, end_year, output_filepath):
+    match_data = gather_data(start_year, end_year)
+    write_data(match_data, output_filepath)
 
-def gather_data():
+def gather_data(start_year, end_year):
     match_data = []
-    for year in range(2010, 2023):
+    for year in range(start_year, end_year+1):
         path1 = f'tennis_atp/atp_matches_{year}.csv'
         path2 = f'tennis_atp/atp_matches_qual_chall_{year}.csv'
         with open(path1, newline='') as readfile:
@@ -44,7 +44,7 @@ def invalid_entry(row):
     else:
         return False
 
-def write_data(data, filename):
+def write_data(data, filepath):
     header = ['match_hash','tourney_name','tourney_date','is_hard', 'is_clay', 'is_grass',
               'is_bo5', 'p1_name', 'p2_name', 'p1_height', 'p1_lefty', 'p1_age','p1_home', 'p1_rating', 'p1_dev',
               'p1_surface_rating', 'p1_surface_dev', 'p1_recent_rating', 'p1_w', 'p1_l', 'p1_surface_w', 'p1_surface_l','p1_inactive_days',
@@ -52,7 +52,7 @@ def write_data(data, filename):
               'p2_surface_rating', 'p2_surface_dev', 'p2_recent_rating', 'p2_w', 'p2_l', 'p2_surface_w', 'p2_surface_l', 'p2_inactive_days', 'p1_win']
     player_dict = {}
 
-    with open(f'data/{filename}', 'w', newline='') as csvfile:
+    with open(f'{filepath}', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         writer.writerow(header)
 
@@ -126,7 +126,8 @@ def write_row(writer, row, player_dict):
     p2_w, p2_l = p2['w'], p2['l']
     p2_surface_w, p2_surface_l = p2[f'{tourney_surface}_w'], p2[f'{tourney_surface}_l']
 
-    match_hash = str(curr_year) + winner_name[0] + winner_rank + loser_name[0] + loser_rank
+    w_points, l_points = row[46], row[48]
+    match_hash = str(curr_year) + winner_name[0] + winner_name[-2:] + winner_rank + loser_name[0] + loser_name[-2:] + loser_rank + w_points + l_points
 
     p1_recent_rating = get_recent_rating(p1)
     p2_recent_rating = get_recent_rating(p2)
@@ -250,4 +251,4 @@ def get_tournament_dict():
     return tournament_dict
 
 if __name__ == '__main__':
-    get_data()
+    get_data(2010, 2023, 'data/test.csv')
