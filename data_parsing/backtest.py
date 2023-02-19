@@ -110,6 +110,7 @@ if __name__ == '__main__':
     #  get_data(2020, 2023, unpaired_csv)
     #  odds_dict = get_csv_info(source_csvs)
     #  pair_data(odds_dict, unpaired_csv, paired_csv)
+    good_trials = []
     for hidden_layer in range(400, 601, 100):
         for learning_rate in range(8, 15):
             learning_rate = learning_rate / 1000
@@ -119,5 +120,10 @@ if __name__ == '__main__':
                     predictions_csv = f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv'
                     predictions = get_predictions(hidden_layer, learning_rate, dropout, trial)
                     add_predictions(predictions, predictions_csv)
-                    test(hidden_layer, learning_rate, dropout, trial)
+                    result = test(hidden_layer, learning_rate, dropout, trial)
+                    good_trials.append((result, predictions_csv))
+    
+    good_trials.sort(reverse=True)
+    for i in range(0, 15):
+        print(good_trials[i])
                     
