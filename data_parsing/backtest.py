@@ -1,5 +1,7 @@
 import csv
 from get_matches import get_data
+from add_predictions import add_predictions, get_predictions
+from test_profit import test
 
 def get_csv_info(source_paths):
     match_data = {}
@@ -103,10 +105,19 @@ def invalid_entry(row):
     return False
 
 if __name__ == '__main__':
-     source_csvs = ['data/2020-_1_.csv', 'data/2021-_1_.csv', 'data/2022_1.csv', 'data/2023-_1__1.csv']
-     unpaired_csv = 'data/unpaired.csv'
-     paired_csv = 'data/paired_odds.csv'
-
-     get_data(2020, 2023, unpaired_csv)
-     odds_dict = get_csv_info(source_csvs)
-     pair_data(odds_dict, unpaired_csv, paired_csv)
+    #  unpaired_csv = 'data/unpaired.csv'
+    #  paired_csv = 'data/paired_odds.csv'
+    #  get_data(2020, 2023, unpaired_csv)
+    #  odds_dict = get_csv_info(source_csvs)
+    #  pair_data(odds_dict, unpaired_csv, paired_csv)
+    for hidden_layer in range(400, 601, 100):
+        for learning_rate in range(8, 15):
+            learning_rate = learning_rate / 1000
+            for int_dropout in range(5, 15, 2):
+                dropout = int_dropout / 100
+                for trial in range(2):
+                    predictions_csv = f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv'
+                    predictions = get_predictions(hidden_layer, learning_rate, dropout, trial)
+                    add_predictions(predictions, predictions_csv)
+                    test(hidden_layer, learning_rate, dropout, trial)
+                    
