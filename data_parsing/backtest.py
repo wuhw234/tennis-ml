@@ -105,18 +105,23 @@ def invalid_entry(row):
     return False
 
 if __name__ == '__main__':
+    predictions_csv = f'data/test0.csv'
+    predictions = get_predictions(0,0,0,0)
+    add_predictions(predictions, predictions_csv)
     #  unpaired_csv = 'data/unpaired.csv'
     #  paired_csv = 'data/paired_odds.csv'
     #  get_data(2020, 2023, unpaired_csv)
     #  odds_dict = get_csv_info(source_csvs)
     #  pair_data(odds_dict, unpaired_csv, paired_csv)
+
+
     good_trials = []
-    for hidden_layer in range(400, 601, 100):
-        for learning_rate in range(8, 15):
+    for hidden_layer in range(200, 601, 100):
+        for learning_rate in range(1,32,10):
             learning_rate = learning_rate / 1000
-            for int_dropout in range(5, 15, 2):
+            for int_dropout in range(15, 46, 10):
                 dropout = int_dropout / 100
-                for trial in range(2):
+                for trial in range(3):
                     predictions_csv = f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv'
                     predictions = get_predictions(hidden_layer, learning_rate, dropout, trial)
                     add_predictions(predictions, predictions_csv)
