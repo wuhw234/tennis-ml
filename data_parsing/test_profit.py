@@ -4,15 +4,15 @@ import numpy as np
 
 def test(hidden_layer, learning_rate, dropout, trial):
     all_rows = []
-    # with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
-    with open(f'data/ok1.csv', newline='') as readfile:
+    with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
+    # with open(f'data/good1.csv', newline='') as readfile:
         reader = csv.reader(readfile, delimiter=',')
         next(reader)
         for row in reader:
             all_rows.append(row)
 
     bet_results = []
-    total = 1000
+    total = 0
     losses = []
     wins = []
     loss_prob = []
@@ -27,8 +27,8 @@ def test(hidden_layer, learning_rate, dropout, trial):
         p2_prob = float(row[-2])
         p1_prob = float(row[-3])
 
-        # if p1_prediction > p1_prob:
-        if p1_prediction > p1_prob and p1_prediction > 0.8:
+        if p1_prediction > p1_prob:
+        # if p1_prediction > p1_prob and p1_prediction > 0.8:
             bet_size = kelly(200, p1_prob, p1_prediction)
             if p1_win:
                 decimal_odds = 1 / p1_prob
@@ -43,8 +43,8 @@ def test(hidden_layer, learning_rate, dropout, trial):
 
 
             bet_results.append(total)
-        # elif p2_prediction > p2_prob:
-        elif p2_prediction > p2_prob and p2_prediction > 0.7:
+        elif p2_prediction > p2_prob:
+        # elif p2_prediction > p2_prob and p2_prediction > 0.8:
             bet_size = kelly(200, p2_prob, p2_prediction)
             if not p1_win:
                 decimal_odds = 2 / p2_prob
@@ -63,19 +63,19 @@ def test(hidden_layer, learning_rate, dropout, trial):
             continue
 
     min_balance = min(bet_results)
-    print('max balance', max(bet_results))
-    print('min_balance', min(bet_results))
-    print('end', bet_results[-1])
+    # print('max balance', max(bet_results))
+    # print('min_balance', min(bet_results))
+    # print('end', bet_results[-1])
 
-    plt.rcParams["figure.figsize"] = [7.50, 3.50]
-    plt.rcParams["figure.autolayout"] = True
+    # plt.rcParams["figure.figsize"] = [7.50, 3.50]
+    # plt.rcParams["figure.autolayout"] = True
 
-    x = np.array(bet_results)
+    # x = np.array(bet_results)
 
-    plt.title("Line graph")
-    plt.plot(x, color="red")
+    # plt.title("Line graph")
+    # plt.plot(x, color="red")
 
-    plt.show()
+    # plt.show()
 
     return min_balance
 
@@ -96,4 +96,9 @@ def calculate_win():
     pass
 
 if __name__ == '__main__':
-    test(0,0,0,0)
+    test(600, 0.031, 0.35, 2)
+    # test(600, 0.011, 0.25, 1) 
+    # test(600, 0.031, 0.15, 0)
+    # test(600, 0.031, 0.25, 2) 4
+    # test(600, 0.021, 0.15, 0) 5
+    # test(600, 0.021, 0.25, 2) 6
