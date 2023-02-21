@@ -4,8 +4,8 @@ import numpy as np
 
 def test(hidden_layer, learning_rate, dropout, trial):
     all_rows = []
-    with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
-    # with open(f'data/good1.csv', newline='') as readfile:
+    # with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
+    with open(f'data/good4.csv', newline='') as readfile:
         reader = csv.reader(readfile, delimiter=',')
         next(reader)
         for row in reader:
@@ -21,6 +21,8 @@ def test(hidden_layer, learning_rate, dropout, trial):
     for i, row in enumerate(all_rows):
         if i < 2500: #first year 2010, unstable ratings
             continue
+        # if i > 5000:
+        #     break
         p1_win = float(row[-4])
         p1_prediction = float(row[-1])
         p2_prediction = 1 - p1_prediction
@@ -63,23 +65,21 @@ def test(hidden_layer, learning_rate, dropout, trial):
             continue
 
     min_balance = min(bet_results)
-    # print('max balance', max(bet_results))
-    # print('min_balance', min(bet_results))
-    # print('end', bet_results[-1])
+    print('max balance', max(bet_results))
+    print('min_balance', min(bet_results))
+    print('end', bet_results[-1])
 
-    # plt.rcParams["figure.figsize"] = [7.50, 3.50]
-    # plt.rcParams["figure.autolayout"] = True
+    plt.rcParams["figure.figsize"] = [7.50, 3.50]
+    plt.rcParams["figure.autolayout"] = True
 
-    # x = np.array(bet_results)
+    x = np.array(bet_results)
 
-    # plt.title("Line graph")
-    # plt.plot(x, color="red")
+    plt.title("Line graph")
+    plt.plot(x, color="red")
 
-    # plt.show()
+    plt.show()
 
     return min_balance
-
-
         
 
 def kelly(balance, odds, predicted):
@@ -96,9 +96,5 @@ def calculate_win():
     pass
 
 if __name__ == '__main__':
-    test(600, 0.031, 0.35, 2)
-    # test(600, 0.011, 0.25, 1) 
-    # test(600, 0.031, 0.15, 0)
-    # test(600, 0.031, 0.25, 2) 4
-    # test(600, 0.021, 0.15, 0) 5
-    # test(600, 0.021, 0.25, 2) 6
+    test(700, 0.021, 0.35, 1)
+    # test(800, 0.021, 0.25, 2)

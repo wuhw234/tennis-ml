@@ -116,17 +116,16 @@ if __name__ == '__main__':
 
 
     good_trials = []
-    for hidden_layer in range(600, 801, 100):
-        for learning_rate in range(11,42,10):
+    dropout = 0.3
+    for hidden_layer in range(700, 1001, 100):
+        for learning_rate in range(21,42,10):
             learning_rate = learning_rate / 1000
-            for int_dropout in range(15, 46, 10):
-                dropout = int_dropout / 100
-                for trial in range(3):
-                    predictions_csv = f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv'
-                    predictions = get_predictions(hidden_layer, learning_rate, dropout, trial)
-                    add_predictions(predictions, predictions_csv)
-                    result = test(hidden_layer, learning_rate, dropout, trial)
-                    good_trials.append((result, predictions_csv))
+            for trial in range(5):
+                predictions_csv = f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv'
+                predictions = get_predictions(hidden_layer, learning_rate, dropout, trial)
+                add_predictions(predictions, predictions_csv)
+                result = test(hidden_layer, learning_rate, dropout, trial)
+                good_trials.append((result, predictions_csv))
     
     good_trials.sort(reverse=True)
     for i in range(0, 15):
