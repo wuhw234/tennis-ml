@@ -5,7 +5,7 @@ import numpy as np
 def test(hidden_layer, learning_rate, dropout, trial):
     all_rows = []
     # with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
-    with open(f'data/good4.csv', newline='') as readfile:
+    with open(f'data/test0.csv', newline='') as readfile:
         reader = csv.reader(readfile, delimiter=',')
         next(reader)
         for row in reader:
