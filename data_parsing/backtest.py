@@ -116,10 +116,10 @@ if __name__ == '__main__':
 
 
     good_trials = []
-    for hidden_layer in range(1000, 1301, 100):
-        for learning_rate in range(3,7):
+    for hidden_layer in range(1300, 1301, 100):
+        for learning_rate in range(5, 6):
             learning_rate = learning_rate / 10000
-            for int_dropout in range(45, 46):
+            for int_dropout in range(15, 86, 5):
                 dropout = int_dropout / 100
                 for trial in range(5):
                     predictions_csv = f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv'

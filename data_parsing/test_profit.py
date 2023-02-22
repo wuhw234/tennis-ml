@@ -4,8 +4,8 @@ import numpy as np
 
 def test(hidden_layer, learning_rate, dropout, trial):
     all_rows = []
-    with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
-    # with open(f'data/5936_val.csv', newline='') as readfile:
+    # with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
+    with open(f'data/real1.csv', newline='') as readfile:
         reader = csv.reader(readfile, delimiter=',')
         next(reader)
         for row in reader:
@@ -100,8 +100,7 @@ def calculate_win():
     pass
 
 if __name__ == '__main__':
-    # test(1300, 0.0005, 0.45, 3)
-    # test(1200, 0.0005, 0.45, 1)
-    test(1300, 0.0006, 0.45, 4)
+    # test(1300, 0.0005, 0.35, 3)
+    test(1300, 0.0005, 0.35, 3)
 
     
