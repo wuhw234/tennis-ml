@@ -4,8 +4,8 @@ import numpy as np
 
 def test(hidden_layer, learning_rate, dropout, trial):
     all_rows = []
-    # with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
-    with open(f'data/test0.csv', newline='') as readfile:
+    with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
+    # with open(f'data/5936_val.csv', newline='') as readfile:
         reader = csv.reader(readfile, delimiter=',')
         next(reader)
         for row in reader:
@@ -29,35 +29,35 @@ def test(hidden_layer, learning_rate, dropout, trial):
         p2_prob = float(row[-2])
         p1_prob = float(row[-3])
 
-        if p1_prediction > p1_prob:
-        # if p1_prediction > p1_prob and p1_prediction > 0.8:
+        # if p1_prediction > p1_prob:
+        if p1_prediction > p1_prob and p1_prediction > 0.8:
             bet_size = kelly(200, p1_prob, p1_prediction)
             if p1_win:
                 decimal_odds = 1 / p1_prob
                 gain = (bet_size * decimal_odds) - bet_size
                 total += gain
                 wins.append(p1_prob)
-                win_prob.append(p1_prediction)
+                win_prob.append(p1_prediction-p1_prob)
             else:
                 total -= bet_size
                 losses.append(p1_prob)
-                loss_prob.append(p1_prediction)
+                loss_prob.append(p1_prediction - p1_prob)
 
 
             bet_results.append(total)
-        elif p2_prediction > p2_prob:
-        # elif p2_prediction > p2_prob and p2_prediction > 0.8:
+        # elif p2_prediction > p2_prob:
+        elif p2_prediction > p2_prob and p2_prediction > 0.8:
             bet_size = kelly(200, p2_prob, p2_prediction)
             if not p1_win:
                 decimal_odds = 2 / p2_prob
                 gain = (bet_size * decimal_odds) - bet_size
                 wins.append(p2_prob)
-                win_prob.append(p2_prediction)
+                win_prob.append(p2_prediction-p2_prob)
 
             else:
                 total -= bet_size
                 losses.append(p2_prob)
-                loss_prob.append(p2_prediction)
+                loss_prob.append(p2_prediction - p2_prob)
 
             bet_results.append(total)
             
@@ -68,6 +68,10 @@ def test(hidden_layer, learning_rate, dropout, trial):
     print('max balance', max(bet_results))
     print('min_balance', min(bet_results))
     print('end', bet_results[-1])
+    print('avg win diff', sum(win_prob) / len(win_prob))
+    print('avg loss diff', sum(loss_prob) / len(loss_prob))
+    print('num_wins', len(win_prob))
+    print('num_losses', len(loss_prob))
 
     plt.rcParams["figure.figsize"] = [7.50, 3.50]
     plt.rcParams["figure.autolayout"] = True
@@ -96,5 +100,8 @@ def calculate_win():
     pass
 
 if __name__ == '__main__':
-    test(700, 0.021, 0.35, 1)
-    # test(800, 0.021, 0.25, 2)
+    # test(1300, 0.0005, 0.45, 3)
+    # test(1200, 0.0005, 0.45, 1)
+    test(1300, 0.0006, 0.45, 4)
+
+    
