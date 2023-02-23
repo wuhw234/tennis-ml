@@ -95,7 +95,6 @@ def clean_dict(player_dict):
         val['inactive_days'] = get_time_since_last_match(val, date.today())
 
 def write_row(writer, row, player_dict, p1_winner):
-    #TODO: REMOVE LEFTY
     tournament_dict = get_tournament_dict()
     tourney_name = row[1]
     tourney_country = tournament_dict[tourney_name]
