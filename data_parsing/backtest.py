@@ -3,20 +3,23 @@ from get_matches import get_data
 from add_predictions import add_predictions, get_predictions
 from test_profit import test
 
-def get_csv_info(source_paths):
+def get_csv_info(start_year, end_year):
     match_data = {}
-    for path in source_paths:
-        year = path[5:9]
-        with open(path, newline='') as readfile:
+    forbidden = set()
+    for year in range(start_year, end_year+1):
+        with open(f'data/{year}.csv', newline='') as readfile:
             reader = csv.reader(readfile, delimiter=',')
 
             for row in reader:
                 if invalid_entry(row):
                     continue
                 hash = get_hash(row, year)
+                if hash in forbidden:
+                    continue
                 winner_odds, loser_odds = row[30], row[31]
                 if hash in match_data:
-                    print('ERROR, hash already in dict', hash)
+                    match_data.pop(hash)
+                    forbidden.add(hash)
                 match_data[hash] = {}
                 match_data[hash]['w_odds'] = winner_odds
                 match_data[hash]['l_odds'] = loser_odds
@@ -25,13 +28,13 @@ def get_csv_info(source_paths):
 
 
 def get_hash(row, year):
-    w_name, l_name = row[9], row[10]
+    w_name, l_name = row[9].lower(), row[10].lower()
     w_rank, l_rank = row[11], row[12]
     w_points, l_points = row[13], row[14]
     w_initial, l_initial = get_initial(w_name), get_initial(l_name)
     w_two, l_two = get_last_two(w_name), get_last_two(l_name)
 
-    hash = year + w_initial.upper() + w_two + w_rank + l_initial.upper() + l_two + l_rank + w_points + l_points
+    hash = str(year) + w_initial + w_two + w_rank + l_initial + l_two + l_rank + w_points + l_points
     return hash
     
 def get_initial(name):
@@ -74,6 +77,8 @@ def pair_data(odds_dict, unpaired_filepath, paired_filepath):
         p1_win = row[-1]
         if match_hash in odds_dict:
             winner_odds, loser_odds = odds_dict[match_hash]['w_odds'], odds_dict[match_hash]['l_odds']
+            if not winner_odds or not loser_odds:
+                continue
             if p1_win == '1':
                 row.append(winner_odds)
                 row.append(loser_odds)
@@ -93,8 +98,8 @@ def invalid_entry(row):
     w_rank, l_rank = row[11], row[12]
     w_points, l_points = row[13], row[14]
     w_name, l_name = row[9], row[10]
+
     if any(not c.isnumeric() for c in w_rank) or any(not c.isnumeric() for c in l_rank):
-         print(w_rank, l_rank)
          return True
     elif not w_rank or not l_rank:
         return True
@@ -104,33 +109,16 @@ def invalid_entry(row):
         return True
     return False
 
-def test():
-    wins = 0
-    losses = 0
-    with open('data/matches.csv', newline='') as readfile:
-        reader = csv.reader(readfile, delimiter=',')
-        next(reader)
-        for row in reader:
-            p1_win = row[-1]
-            if p1_win == '1':
-                wins += 1
-            else:
-                losses += 1
-
-
-    print(wins, losses)
-
 
 if __name__ == '__main__':
     # predictions_csv = f'data/test0.csv'
     # predictions = get_predictions(0,0,0,0)
     # add_predictions(predictions, predictions_csv)
-    #  unpaired_csv = 'data/unpaired.csv'
-    #  paired_csv = 'data/paired_odds.csv'
-    #  get_data(2020, 2023, unpaired_csv)
-    #  odds_dict = get_csv_info(source_csvs)
-    #  pair_data(odds_dict, unpaired_csv, paired_csv)
-    test()
+    unpaired_csv = 'data/unpaired.csv'
+    paired_csv = 'data/paired_odds.csv'
+    get_data(2010, 2023, unpaired_csv)
+    odds_dict = get_csv_info(2010, 2023)
+    pair_data(odds_dict, unpaired_csv, paired_csv)
 
     # good_trials = []
     # for hidden_layer in range(100, 1601, 300):

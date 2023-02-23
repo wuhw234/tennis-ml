@@ -102,7 +102,7 @@ def write_row(writer, row, player_dict, p1_winner):
     is_clay = 1 if tourney_surface == 'Clay' else 0
     is_hard = 1 if tourney_surface == 'Hard' else 0
     is_grass = 1 if tourney_surface == 'Grass' else 0
-    winner_rank, loser_rank = standardize_name(row[45]), standardize_name(row[47])
+    winner_rank, loser_rank = row[45], row[47]
     winner_name, loser_name = standardize_name(row[10]), standardize_name(row[18])
     tourney_date = row[5]
     is_bo5 = 1 if row[24] == '5' else 0
