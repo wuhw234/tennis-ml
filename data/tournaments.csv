@@ -1,647 +1,857 @@
 tourney_name,tourney_country
-Astana,KAZ
-St Remy de Provence CH,FRA
-Pingguo CH,CHN
+Kiev CH,UKR
+New Delhi2 CH,IND
+Carson2 CH,USA
+Freudenstadt CH,GER
+Rancho Mirage CH,USA
+Tunica Resorts CH,USA
+Bermuda CH,BER
+Joinville CH,BRA
+Mandeville CH,USA
+Aarhus CH,DEN
+Shrewsbury CH,USA
+Grenoble CH,FRA
+Homestead CH,PA
+Chikmagalur CH,IND
+Denver CH,USA
+Nashville CH,USA
+Khorat CH,THA
+Fresno CH,USA
+Sofia CH,BUL
+Aracaju CH,BRA
+Hamburg Masters,GER
+London,GBR
+Poertschach,AUT
+Atlanta CH,USA
+Mexico City,MEX
+Doha CH,QAT
+Shanghai,CHN
+Dublin CH,GBR
+Santa Cruz de la Sierra CH,BOL
+Magdeburg CH,GER
+Constanta CH,ROU
+Tyler CH,USA
+Beijing Olympics,CHN
+Barnstaple CH,GBR
+Waco CH,USA
+Andrezieux CH,FRA
+Valladolid CH,ESP
+Chuncheon CH,KOR
+Campinas1 CH,BRA
+Burnie2 CH,AUS
+Scottsdale,USA
+Andorra CH,AND
+Besancon CH,FRA
+Stuttgart Outdoor,GER
+Dnepropetrovsk CH,UKR
+Kolding CH,DEN
+Edinburgh CH,GBR
+Ischgl CH,AUT
+Amsterdam,NED
+Bukhara CH,UZB
+Kuala Lumpur CH,MAS
+Moncton CH,CAN
+Ulm CH,GER
+Perth CH,AUS
+Sunderland CH,GBR
+Mordovia CH,RUS
+Cuenca CH,ECU
+North Miami Beach CH,USA
+Kish Island CH,IRI
+Bressanone CH,ITA
+Houston1 CH,USA
+Campinas2 CH,BRA
+Prague2 CH,CZE
+Venice CH,ITA
+Mauritius CH,MRI
+Burbank CH,USA
+Ostend CH,BEL
+College Station CH,USA
+Aschaffenburg CH,GER
+Hull CH,GBR
+Louisville CH,USA
+Toulouse,FRA
+Mumbai CH,IND
+Kawana CH,AUS
+Joplin CH,USA
+New Delhi III CH,IND
+Durban CH,RSA
+Hong Kong,HKG
+Iquique CH,CHI
+Milan1 CH,ITA
+Brighton,GBR
+Campos Do Jordao1 CH,BRA
+Brasilia1 CH,BRA
+Dubrovnik CH,CRO
+Humacao CH,PUR
+Stuttgart Masters,GER
+Brasilia2 CH,BRA
+Cagliari CH,ITA
+Donetsk CH,UKR
+Tangier CH,MAR
+Sao Paulo1 CH,BRA
+Hilversum CH,NED
+Osaka CH,JPN
+Zell CH,GER
+Cherkassy CH,UKR
+Lubeck CH,GER
+Lubbock CH,USA
+Boston CH,USA
+Dusseldorf CH,GER
+Milan,ITA
+Torrance CH,USA
+Lanzarote CH,ESP
+Almaty2 CH,KAZ
+Mumbai,IND
+Contrexeville CH,FRA
+Chiasso CH,SUI
+Mexico City1 CH,MEX
+Masters Cup,N/A
+Florianopolis II CH,BRA
+Rocky Mount CH,USA
+Kamnik CH,SLO
+Sydney Olympics,AUS
+Pamplona CH,ESP
+Ettlingen CH,GER
+Kerrville CH,USA
+Amarillo CH,USA
+Gosford CH,AUS
+Kosice2 CH,SLO
+Togliatti CH,RUS
+Cali2 CH,COL
+Boca Raton CH,USA
+Covington CH,USA
+Bucharest2 CH,ROU
+Athens Olympics,GRE
+Weiden CH,GER
+Helsinki2 CH,FIN
+Brindisi CH,ITA
+Fes CH,MAR
+Indianapolis,USA
+Ribeirao Preto CH,BRA
+New Delhi IV CH,IND
+Southampton CH,GBR
+Tarzana CH,USA
+Telde CH,ESP
+Skopje CH,MKD
+Karlsruhe CH,GER
+Budaors CH,HUN
+Ahmedabad CH,IND
+Amersfoort,NED
+New Orleans CH,USA
+Bolton CH,GBR
+Forest Hills CH,USA
+Waikoloa CH,USA
+Naples CH,ITA
+Montauban CH,FRA
+Groningen CH,NED
+New Caledonia CH,N/A
+Austin CH,USA
+Antwerp CH,BEL
+Tashkent,UZB
+Jersey2 CH,GBR
+St. Poelten,AUT
+Graz CH,AUT
+Atlantic City CH,USA
+Sopot,POL
+St. Jean De Luz CH,FRA
+Zabrze CH,POL
+Tehran CH,IRI
+Luebeck CH,GER
+Cardiff CH,GBR
+East London CH,GBR
+Campos Do Jordao2 CH,BRA
+Luxembourg CH,LUX
+Las Vegas,USA
+Charleroi CH,BEL
+Vigo CH,ESP
+Gramado CH,BRA
+Linz CH,AUT
+Costa Rica CH,CRC
+Calcutta CH,IND
+Tumkur CH,IND
+Eisenach CH,GER
+Mas Palomas CH,ESP
+Sylt CH,GER
+San Antonio CH,USA
+Medjugorje CH,BIH
+Armonk CH,USA
+Budapest2 CH,HUN
+La Serena CH,CHI
+Bristol CH,GBR
+Hamilton CH,NZL
+Orlando,USA
+Chandigarh CH,IND
+Dresden CH,GER
+Warsaw,POL
+Copenhagen,DEN
+Espinho CH,POR
+St Petersburg CH,RUS
+Long Island,USA
+Sassuolo CH,ITA
+Mexico City2 CH,MEX
+Wrexham CH,GBR
+San Marino,SMR
+Tasmania CH,AUS
+Olbia CH,ITA
+Urbana CH,USA
+Monchengladbach CH,GER
+Birmingham CH,USA
+Mantova CH,ITA
+Ho Chi Minh City,VNM
+Palermo,ITA
+Bronx CH,USA
+Caracas CH,VEN
+Dharwad CH,IND
+Khanty-Mansiysk CH,RUS
+Miami CH,USA
+Brisbane CH,AUS
+Kranj CH,SLO
+Belgaum CH,IND
+Yuba City CH,USA
 Recife CH,BRA
-San Marino CH,SMR
-London Olympics,GBR
-Coquimbo CH,CHI
-Las Palmas 2 CH,ESP
-Gijon,ESP
-Hong Kong CH,HKG
-Fairfield CH,USA
-Bangkok2 CH,THA
-Sophia Antipolis CH,FRA
-Cassis CH,FRA
-Ann Arbor CH,USA
-Geneva CH,SUI
-Indore CH,IND
-Verona CH,ITA
-Biel CH,SUI
-Turin CH,ITA
-Bari CH,ITA
-Zagreb CH,CRO
-Madrid CH,ESP
-Saint-Brieuc CH,FRA
-Sao Paulo CH,BRA
-Recife2 CH,BRA
-Sopot CH,POL
-Split CH,CRO
-Rennes CH,FRA
-Poprad-Tatry CH,SVK
-Istanbul CH,TUR
-Nonthaburi 2 CH,THA
-Lexington CH,USA
-Qujing CH,CHN
-Florence CH,ITA
-Piracicaba CH,BRA
-Atlanta,USA
-Sardinia,ITA
-Bengaluru 1 CH,IND
-Brest CH,BLR
-Shymkent 1 CH,KAZ
-Salinas 2 CH,USA
-Johannesburg CH,RSA
-Shymkent 2 CH,KAZ
-Mersin CH,TUR
-Vina del Mar,CHI
-Murcia CH,ESP
-Aguascalientes CH,MEX
-Poznan CH,POL
-Lyon CH,FRA
-Queen's Club,GBR
-Santo Domingo CH,DOM
-Champaign-Urbana CH,USA
-Johannesburg,RSA
-Melbourne,AUS
-Lermontov CH,RUS
-Forli 1 CH,ITA
-Rome2 CH,ITA
-Mestre CH,ITA
-Turino CH,ITA
-Quanzhou CH,CHN
-Augsburg CH,GER
-Campinas CH,BRA
-Newport,USA
-Bucharest CH,ROU
-Forli 4 CH,ITA
-Mallorca CH,ESP
-Budapest CH,HUN
-Ojai CH,USA
-Ludwigshafen CH,GER
-Eastbourne,GBR
-Memphis,USA
-Bangkok  CH,THA
-Cali II CH,COL
-Tour Finals,N/A
-Grodzisk Mazowiecki CH,POL
-Leon CH,MEX
-Florianopolis CH,BRA
-Timisoara CH,ROU
-Belem CH,POR
-Zug CH,SUI
-Houston,USA
-Belgrade ,SRB
-Dallas,USA
-Biella 5 CH,ITA
-Brasov CH,ROU
-Nottingham,GBR
-Gatineau CH,CAN
-Parma,ITA
-Qingdao CH,CHN
-Moscow,RUS
-Nonthaburi 3 CH,THA
-Barranquilla CH,COL
-Tashkent  CH,UZB
-Baotou CH,CHN
-Tenerife CH,ESP
-Oeiras CH,POR
-Sacramento CH,USA
-Braunschweig CH,GER
-Bendigo CH,AUSA
-Maia 2 CH,POR
-Liberec  CH,CZE
-Amersfoort CH,NED
-NextGen Finals,ITA
-Tulsa CH,USA
-Nice,FRA
-Heilbronn CH,GER
-Prague 1 CH,CZE
-Las Vegas CH,USA
-Luedenscheid CH,GER
-Koblenz CH,GER
-Adelaide,AUS
-Noumea CH,N/A
 Santiago2 CH,CHI
-Da Nang CH,VIE
-Cordenons CH,ITA
-Dortmund CH,GER
-Budapest,HUN
-Rijeka CH,CRO
-Cortina CH,ITA
-Caltanissetta CH,ITA
-ATP Challenger Tour Finals CH,N/A
-Rome CH,ITA
-Asuncion CH,PAR
-Roseto Degli Abruzzi 2 CH,ITA
-Saransk CH,RUS
-Belo Horizonte2 CH,BRA
-Prague 3 CH,CZE
-Chennai,IND
-Burnie CH,AUS
-Hamburg CH,GER
-Medellin CH,COL
-Genova CH,ITA
-Cleveland CH,USA
-Andria CH,ITA
-Rome 1 CH,ITA
-San Remo CH,ITA
-Dusseldorf,GER
-Baton Rouge CH,USA
-Lima 2 CH,PER
-Iasi CH,ROU
-Forli 5 CH,ITA
-Murray River Open,AUS
-Tampere CH,FIN
-Us Open,USA
-Calabasas CH,USA
-Sydney1 CH,AUS
-Charleston CH,USA
-Bercuit CH,BEL
-Laver Cup,N/A
-Campos Do Jordao CH,BRA
-Ljubljana CH,SLO
-Sydney,AUS
-Marrakech,MAR
-Palermo CH,ITA
-Bradenton CH,USA
-Bergamo CH,ITA
-Lugano CH,SUI
-Cordoba,ARG	
-Napa CH,USA
-Mouilleron-Le-Captif CH,FRA
-Ramat Hasharon CH,ISR
-Istanbul,TUR
-Puebla CH,MEX
-Kobe CH,JPN
-St.Brieuc CH,FRA
-Le Gosier CH,N/A
-Biella CH,ITA
-Almaty 1 CH,KAZ
-Meerbusch CH,GER
-Vancouver CH,CAN
-Biella 2 CH,ITA
-Lima CH,PER
-Houston CH,USA
-Mallorca,ESP
-Athens CH,GRE
-Fergana CH,UZB
-Dallas CH,USA
-Traralgon2 CH,USA
-Bath CH,GBR
-Malaga CH,ESP
-Australian Open,AUS
-Valencia,ESP
-Aptos CH,USA
-Kyoto CH,JPN
-Sao Jose Do Rio Preto CH,BRA
-Antalya 2 CH,TUR
-Nottingham CH,GBR
-Shanghai Masters,CHN
-Indianapolis CH,USA
-Orbetello CH,ITA
-Petange CH,LUX
-L'Aquila CH,ITA
-Izmir CH,TUR
-Chengdu CH,CHN
-Aix En Provence CH,FRA
-Nottingham 2 CH,GBR
-St. Brieuc CH,FRA
-Suzhou CH,CHN
-Marbella,ESP
-Busan CH,KOR
-Split 1 CH,CRO
-Santiago 2 CH,CHI
-Atp Cup,AUS
-Basel,SUI
-Eckental CH,GER
-Singapore CH,SIN
-Cordoba CH,ESP
-Bucaramanga CH,COL
-Rhodes CH,GRE
-Biella 4 CH,ITA
-Meknes CH,MAR
-Sarasota CH,USA
-Acapulco,MEX
-Orlando 1 CH,USA
-Bogota CH,COL
-Kosice CH,SVK
-Shanghai CH,CHN
-An-Ning CH,CHN
-Sanremo CH,ITA
-Doha Aus Open Qualies,QAT
-Manerbio CH,ITA
-Gstaad,SUI
-Monza CH,ITA
-Surbiton CH,GBR
-Prague II CH,CZE
-Rome3 CH,ITA
-Las Palmas CH,ESP
-Bordeaux CH,FRA
-Rotterdam,NED
-Glasgow CH,GBR
-Sarajevo CH,BIH
-Antwerp,BEL
-Salinas CH,USA
-Chicago CH,USA
-Zhuhai CH,CHN
-Toulouse CH,FRA
-Scheveningen CH,NED
-Pune CH,IND
-Casablanca,MAR
-San Benedetto Del Tronto CH,ITA
-Mouilleron Le Captif CH,FRA
-Chengdu,CHN
-San Luis Potosi CH,MEX
-Marburg CH,GER
-Winnetka CH,USA
-Wuhan CH,CHN
-Rio de Janeiro CH,BRA
-Astana II CH,KAZ
-Alicante CH,ESP
-Santiago CH,CHI
-Porto Alegre CH,BRA
-Montpellier,FRA
-New Delhi CH,IND
-Tigre CH,ARG
-Tigre 1 CH,ARG
-Rome Masters,ITA
-Belo Horizonte CH,BRA
-Nongbo CH,CHN
-Jonkoping CH,SWE
-Vancouver  CH,CAN
-Canada Masters,CAN
-Halle,GER
-Guadalajara CH,MEX
-Pau CH,FRA
-Maia CH,POR
-Tyumen CH,RUS
-Manchester CH,GBR
-Alphen aan den Rijn CH,NED
-Belgrade CH,SRB
-Guayaquil CH,ECU
-Ho Chi Minh CH,VNM
-Slovakia CH,SVK
-Adelaide 1,AUS
-Charlottesville CH,USA
-Rio Olympics,BRA
-Kitzbuhel CH,AUT
-Happy Valley CH,AUS
-Rimouski CH,CAN
-Cherbourg CH,FRA
-Curitiba CH,BRA
-Naples,ITA
-Cary CH,USA
-Milan CH,ITA
-Furth CH,GER
-Blois CH,FRA
-Monte Carlo Masters,N/A
-St. Petersburg 2 CH,RUS
-Reggio Emilia CH,ITA
-Nur-Sultan CH,KAZ
-Mohammedia CH,MAR
-Troyes CH,FRA
-Rio Quente CH,BRA
-Concepcion CH,CHI
-Seoul CH,KOR
-Buenos Aires,ARG
-Bytom CH,POL
-Phoenix CH,USA
-Santa Cruz De La Sierra CH,BOL
-Ambato CH,ECU
-Aachen CH,GER
-Poprad CH,SVK
-Manila CH,PHI
-Raanana CH,ISR
-Belgrade 2,SRB
-Pereira CH,COL
-San Jose,USA
-Binghamton CH,USA
-Astana2 CH,KAZ
-Oeiras 3 CH,POR
-Prostejov CH,CZE
-Los Cabos,MEX
-Fano CH,ITA
-Challenger Tour Finals,BRA
-Ho Chi Minh City CH,VIE
-Nonthaburi 1 CH,THA
-Beijing,CHN
-Doha,QAT
-Brasilia CH,BRA
-Tenerife 2 CH,ESP
-Cologne 2,GER
-Santos CH,BRA
-Quimper 2 CH,FRA
-San Juan CH,N/A
-Bastad CH,SWE
-Wolfsburg CH,GER
-El Espinar CH,ESP
-Delray Beach,USA
-Metz,FRA
-Sevilla CH,ESP
-Manacor CH,ESP
-Bratislava 1 CH,SVK
-Bastad,SWE
-Vienna,AUT
-Biella 3 CH,ITA
-Braunchweig CH,GER
-Moscow CH,RUS
-Roland Garros,FRA
-Nottingham 1 CH,GBR
-Bucharest,ROU
-Zhuhai,CHN
-Orlando 2 CH,USA
-Sibiu CH,ROU
-Guangzhou CH,CHN
-Banja Luka CH,BIH
-Kazan2 CH,RUS
-Salvador De Bahia CH,BRA
-Orleans CH,FRA
-Quimper CH,FRA
-Tokyo,JPN
-Alphen Aan Den Rijn CH,NED
-Rabat CH,MAR
-Loughborough CH,GBR
-Columbus CH,USA
-Istanbul 1 CH,TUR
-Savannah CH,USA
-Blumenau CH,BRA
-Saint Tropez CH,FRA
-Rio de Janeiro,BRA
-Roseto Degli Abruzzi 1 CH,ITA
-Mauthausen CH,AUT
-Sydney CH,AUS
-Prague 2 CH,CZE
-San Francisco CH,USA
-New Haven CH,USA
-Washington,USA
-Agri CH,TUR
-Trieste CH,ITA
-Little Rock CH,USA
-Oeiras 2 CH,POR
-Rimini CH,ITA
-Bangkok CH,THA
-Braga CH,POR
-Bogota,COL
-Tenerife 1 CH,ESP
-Valencia CH,ESP
-Sao Paulo4 CH,BRA
-Istanbul 2 CH,TUR
-Troisdorf CH,GER
-St Brieuc CH,FRA
-Florence  CH,ITA
-Singapore,SIN
-US Open,USA
-Floridablanca CH,PHI
-Potro Alegre CH,BRA
-Paris Masters,FRA
-Indian Wells Masters,USA
-Bratislava CH,SVK
-Maia 1 CH,POR
-Newport Beach CH,USA
-Nur-Sultan 2 CH,KAZ
-Nanjing CH,CHN
-Trnava CH,SVK
-Sao Paulo2 CH,BRA
-West Lakes CH,AUS
-Manta CH,ECU
-Wimbledon,GBR
-Vilnius CH,LTU
-Tiburon CH,USA
-Yeongwol CH,KOR
-Gwangju CH,KOR
-Lima 1 CH,PER
-St. Petersburg,RUS
-Miami Masters,USA
+Tallahassee CH,USA
 Losinj CH,CRO
-Granby CH,CAN
-Calgary CH,CAN
-Launceston CH,AUS
-s Hertogenbosch,NED
-Cali CH,COL
-St. Petersburg 1 CH,RUS
-Zadar CH,CRO
-Bangkok,THA
-Padova CH,ITA
-Melbourne CH,AUS
-Dallas2 CH,USA
-Antalya 1 CH,TUR
-Biella 1 CH,ITA
-Shenzhen CH,CHN
-Aix-En-Provence CH,FRA
-Jersey CH,GBR
-Salvador CH,BRA
-Sao Paulo,BRA
-Bangalore CH,IND
-Seoul,KOR
-Shymkent CH,KAZ
-Hamburg,GER
-Caloundra CH,AUS
-Rio De Janeiro CH,BRA
-Samarkand CH,UZB
-Antalya 4 CH,TUR
-Winston-Salem,USA
-Mons CH,BEL
-Buenos Aires2 CH,ARG
-Liuzhou CH,CHN
-Jinan CH,CHN
-Tel Aviv,ISR
-Canberra CH,AUS
-Kuala Lumpur,MAS
-Trani CH,ITA
-Adelaide 2,AUS
-Eskisehir CH,TUR
-Aix en Provence CH,FRA
-Santiago,CHI
-St. Tropez CH,FRA
-Chitre CH,PAN
-Sao Leopoldo CH,BRA
-Stockton CH,USA
-Lille CH,FRA
-Kaohsiung CH,TPE
-Nur-Sultan 3 CH,KAZ
-Alessandria CH,ITA
-Marbella CH,ESP
-Rome  CH,ITA
-Temuco CH,CHI
-Chennai CH,IND
-Mendoza CH,ARG
-Pullach CH,GER
-Cuernavaca CH,MEX
-Alphen CH,NED
-Estoril,POR
-St Remy CH,FRA
-Nur-Sultan 1 CH,KAZ
-Bratislava 2 CH,SVK
-Irving CH,USA
-Recanati CH,ITA
-Cary 2 CH,USA
-Oberstaufen CH,GER
-San Benedetto CH,ITA
-Oeiras 4 CH,POR
-Geneva,SUI
-Indian Wells CH,USA
-Lahaina CH,USA
-Madrid Masters,ESP
-Courmayeur CH,ITA
-Potchefstroom 2 CH,RSA
-Stuttgart,GER
-Tarragona CH,ESP
-Morelos CH,MEX
-Playford CH,AUS
-Orlando CH,USA
-Yokohama CH,JPN
-Como CH,ITA
-Marrakech CH,MAR
-Manama CH,BRN
-San Diego,USA
-Cologne 1,GER
-Ortisei CH,ITA
-Calgary  CH,CAN
-Koblenz  CH,GER
-Rome 2 CH,ITA
-Almaty CH,KAZ
-Kyiv CH,UKR
-Ercolano CH,ITA
-Forli 6 CH,ITA
-Champaign CH,USA
-Nanchang CH,CHN
-Nottingham2 CH,GBR
-Tunis CH,TUN
-Napoli2 CH,ITA
-Maui CH,USA
+Helsinki CH,FIN
+West Lakes CH,AUS
+Francavilla Al Mare CH,ITA
+Las Palmas 2 CH,ESP
+Singapore,SIN
 Todi CH,ITA
-St Petersburg,RUS
-Taipei CH,TPE
-Carson CH,USA
-Heilbronn II CH,GER
-Maspalomas CH,ESP
-Nur-Sultan,KAZ
-Winnipeg CH,CAN
-Punta Del Este CH,URU
-Salinas 1 CH,ECU
-San Benedetto del Tronto CH,ITA
-Costa Do Sauipe,BRA
-Penza CH,RUS
-ATP Rio de Janeiro,BRA
-Biella 6 CH,ITA
 Astana CH,KAZ
-Kazan CH,RUS
-Traralgon CH,AUS
-Cancun CH,MEX
-New Haven,USA
-Panama City CH,USA
-Szczecin CH,POL
-Cairo CH,EGY
-Biella 7 CH,ITA
-Wuhai CH,CHN
-Barcelona CH,ESP
-Buenos Aires CH,ARG
-Lyon,FRA
-Mexico City CH,MEX
-Oeiras 1 CH,POR
-Napoli CH,ITA
-Great Ocean Road Open,AUS
-Tanger CH,MAR
-Tempe CH,USA
-Kun-Ming CH,CHN
-Gimcheon CH,KOR
+Rome CH,ITA
+United Cup,AUS
+Casablanca CH,MAR
+Asuncion CH,PAR
+Buenos Aires2 CH,ARG
+Biella 3 CH,ITA
+Alphen Aan Den Rijn CH,NED
+Nottingham2 CH,GBR
+Johannesburg CH,RSA
+Cali CH,COL
+Brescia CH,ITA
+Athens CH,GRE
+Alicante CH,ESP
+Gijon,ESP
+Manerbio CH,ITA
 Hua Hin CH,THA
-Porto CH,POR
-Quito CH,ECU
-Barletta CH,ITA
-Yokkaichi CH,JPN
-Bogota2 CH,COL
-Arad CH,ROU
-Forli 2 CH,ITA
-Ismaning CH,GER
-Monterrey CH,MEX
+Vilnius CH,LTU
+Taipei CH,TPE
+Canberra CH,AUS
+Marbella CH,ESP
+Chicago CH,USA
+Da Nang CH,VIE
+s Hertogenbosch,NED
+Piracicaba CH,BRA
+Vercelli CH,ITA
+Kobe CH,JPN
+Sanremo CH,ITA
+Bangkok  CH,THA
+Split CH,CRO
+Warsaw CH,POL
+Rennes CH,FRA
+Florence CH,ITA
+Rome 1 CH,ITA
+Lahaina CH,USA
+Penza CH,RUS
+Cremona CH,ITA
+An-Ning CH,CHN
+Newport Beach CH,USA
+Banja Luka CH,BIH
+Wuhan CH,CHN
+Kenitra CH,MAR
+Scheveningen CH,NED
+Leon CH,MEX
+Rabat CH,MAR
+Zhuhai,CHN
+Ramat Hasharon CH,ISR
+Tigre CH,ARG
+Shenzhen,CHN
+Lyon,FRA
+Maia 2 CH,POR
+Happy Valley CH,AUS
+Lima 2 CH,PER
+Como CH,ITA
+San Juan CH,N/A
+Stockholm,SWE
+Caloundra CH,AUS
+Umag,CRO
+Adelaide 1,AUS
+Suzhou CH,CHN
+Carson CH,USA
+Baotou CH,CHN
+Laver Cup,N/A
+Alphen aan den Rijn CH,NED
+Quanzhou CH,CHN
+Phoenix CH,USA
+Guayaquil CH,ECU
+Montevideo CH,URU
+Oeiras 3 CH,POR
+Cary CH,USA
+Paris Masters,FRA
+Split 2 CH,CRO
+Saransk CH,RUS
+Tashkent  CH,UZB
+Saint Tropez CH,FRA
+Salinas 2 CH,USA
+Rotterdam,NED
+St. Petersburg 1 CH,RUS
+Valencia,ESP
+Indore CH,IND
+Pullach CH,GER
+Biella 2 CH,ITA
+Concepcion CH,CHI
+Zadar CH,CRO
+Napoli CH,ITA
 Munich,GER
 Villa Allende CH,ARG
-Shenzhen,CHN
-Las Palmas 1 CH,ESP
-Santiago 1 CH,CHI
-Karshi CH,UZB
-Helsinki CH,FIN
-Tallahassee CH,USA
-Bengaluru CH,IND
-Split 2 CH,CRO
-Francavilla Al Mare CH,ITA
-Barcelona,ESP
-Kolkata CH,IND
-San Jose CH,USA
-Antalya,TUR
-Umag,CRO
-Honolulu CH,USA
-Corrientes CH,ARG
-Toyota CH,JPN
-Forli CH,ITA
-Brescia CH,ITA
-Zhangjiagang CH,CHN
-Lyon  CH,FRA
-Antalya 3 CH,TUR
-Bengaluru 2 CH,IND
-New York,USA
-Kenitra CH,MAR
-Perugia CH,ITA
-Pune,IND
-Forli 3 CH,ITA
-Ilkley CH,GBR
-Sao Paulo3 CH,BRA
-Quimper 1 CH,FRA
-Montevideo CH,URU
-Ostrava CH,CZE
-Pozoblanco CH,ESP
-Beijing CH,CHN
-Segovia CH,ESP
-Marseille,FRA
-Tigre 2 CH,ARG
-Warsaw CH,POL
-Belgrade,SRB
-Knoxville CH,USA
-Lisbon CH,POR
-Anning CH,CHN
-Cremona CH,ITA
-Ottignies Louvain CH,BEL
-Cary 1 CH,USA
-Brisbane,AUS
-Sofia,BUL
-Zagreb,CRO
-Cagliari,ITA
-Reunion Island CH,N/A
-Los Angeles,USA
+Bath CH,GBR
+Baton Rouge CH,USA
 Vicenza CH,ITA
-Puerto Vallarta CH,MEX
-Ningbo CH,CHN
-Florence,ITA
-Vercelli CH,ITA
-Parma CH,ITA
-Tulln CH,AUT
-Casablanca CH,MAR
-San Sebastian CH,ESP
-Cincinnati Masters,USA
-Santa Cruz CH,USA
-Liberec CH,CZE
-Tashkent CH,UZB
-Villena CH,ESP
-Portoroz CH,SLO
-Kitzbuhel,AUT
-Seville CH,ESP
-Villa Maria CH,ARG
-Roanne CH,FRA
-Guimaraes CH,POR
-Drummondville CH,CAN
-Salzburg CH,AUT
-Tianjin CH,CHN
-Batman CH,TUR
-Nur-Sultan 4 CH,KAZ
-Jerusalem CH,ISR
-Lisboa CH,POR
-Almaty 2 CH,KAZ
+Malaga CH,ESP
+Chennai CH,IND
+Belgrade ,SRB
+Ljubljana CH,SLO
+Sao Leopoldo CH,BRA
+Wolfsburg CH,GER
+Shanghai Masters,CHN
+Mallorca,ESP
+Heilbronn II CH,GER
+Vina del Mar,CHI
 Potchefstroom CH,RSA
-Saint Brieuc CH,FRA
-Prague CH,CZE
-Potchefstroom 1 CH,RSA
-United Cup,AUS
-St. Remy CH,FRA
+New York,USA
+Kyoto CH,JPN
+Mouilleron-Le-Captif CH,FRA
+Busan CH,KOR
+Drummondville CH,CAN
+ATP Rio de Janeiro,BRA
+Tarragona CH,ESP
+Dortmund CH,GER
+Ostrava CH,CZE
+Glasgow CH,GBR
 Bogota3 CH,COL
-Genoa CH,ITA
-Poprad Tatry CH,SLO
+Traralgon CH,AUS
+Nur-Sultan,KAZ
+Trani CH,ITA
+Sopot CH,POL
+Ann Arbor CH,USA
+Pozoblanco CH,ESP
+Sibiu CH,ROU
+Furth CH,GER
+Bratislava 1 CH,SVK
+Rome3 CH,ITA
+Sao Paulo,BRA
+Villa Maria CH,ARG
+Monte Carlo Masters,N/A
+Tulsa CH,USA
+Rio Olympics,BRA
+Melbourne CH,AUS
+Rome2 CH,ITA
+Mestre CH,ITA
+Little Rock CH,USA
+Las Palmas CH,ESP
+Mendoza CH,ARG
+Gwangju CH,KOR
+Barcelona,ESP
+Mersin CH,TUR
+Antalya,TUR
+San Luis Potosi CH,MEX
+Tanger CH,MAR
+Winnipeg CH,CAN
+Valencia CH,ESP
+Salvador De Bahia CH,BRA
+Alessandria CH,ITA
+Sydney,AUS
+Santos CH,BRA
+Beijing,CHN
+Bradenton CH,USA
+Aix en Provence CH,FRA
+Brasilia CH,BRA
+Chennai,IND
+Reggio Emilia CH,ITA
+Loughborough CH,GBR
+Tiburon CH,USA
+Santo Domingo CH,DOM
+Poprad CH,SVK
+Punta Del Este CH,URU
+Forli 3 CH,ITA
+Bengaluru 2 CH,IND
+Meknes CH,MAR
+Braunchweig CH,GER
+Ho Chi Minh CH,VNM
+Salzburg CH,AUT
+Grodzisk Mazowiecki CH,POL
+Aguascalientes CH,MEX
+Las Vegas CH,USA
+Astana2 CH,KAZ
+Granby CH,CAN
+Parma CH,ITA
+Budapest,HUN
+Tigre 1 CH,ARG
+Rio de Janeiro,BRA
+Nur-Sultan 2 CH,KAZ
+Guadalajara CH,MEX
+Biella 6 CH,ITA
+Dallas2 CH,USA
+Sao Jose Do Rio Preto CH,BRA
+San Benedetto CH,ITA
+New Haven CH,USA
+Reunion Island CH,N/A
+Challenger Tour Finals,BRA
+Hamburg,GER
+Bytom CH,POL
+Fairfield CH,USA
+Geneva CH,SUI
+Adelaide 2,AUS
+Qujing CH,CHN
 Quito,ECU
+Lisbon CH,POR
+Acapulco,MEX
+Mons CH,BEL
+Champaign CH,USA
+Cancun CH,MEX
+Nonthaburi 3 CH,THA
+Calabasas CH,USA
+Los Angeles,USA
+Kyiv CH,UKR
+Kolkata CH,IND
+Forli 6 CH,ITA
+Vancouver CH,CAN
+Tulln CH,AUT
+Wimbledon,GBR
+Cali II CH,COL
+Corrientes CH,ARG
+Sarasota CH,USA
+Kosice CH,SVK
+Bengaluru CH,IND
+Forli 4 CH,ITA
+Quimper 2 CH,FRA
+Seoul CH,KOR
+New Delhi CH,IND
+Rome Masters,ITA
+Houston CH,USA
+Yokohama CH,JPN
+Tour Finals,N/A
+Sao Paulo2 CH,BRA
+Sao Paulo3 CH,BRA
+Izmir CH,TUR
+Salvador CH,BRA
+Forli CH,ITA
+Ojai CH,USA
+Cary 2 CH,USA
+Bogota CH,COL
+Bangkok CH,THA
+Tampere CH,FIN
+Cortina CH,ITA
+Alphen CH,NED
+Yokkaichi CH,JPN
+Hong Kong CH,HKG
+Raanana CH,ISR
+Split 1 CH,CRO
+Andria CH,ITA
+Mohammedia CH,MAR
+Halle,GER
+Luedenscheid CH,GER
+Astana,KAZ
+Knoxville CH,USA
+Padova CH,ITA
+Puerto Vallarta CH,MEX
+Santiago CH,CHI
+Roland Garros,FRA
+Samarkand CH,UZB
+Surbiton CH,GBR
+Nonthaburi 1 CH,THA
+Barranquilla CH,COL
+Puebla CH,MEX
+St Remy CH,FRA
+Lima CH,PER
+Prague II CH,CZE
+Bangalore CH,IND
+Koblenz  CH,GER
+Calgary CH,CAN
+St.Brieuc CH,FRA
+Porto CH,POR
+Kazan2 CH,RUS
+Temuco CH,CHI
+Cairo CH,EGY
+Biella CH,ITA
+Sacramento CH,USA
+US Open,USA
+Quito CH,ECU
+Vancouver  CH,CAN
+Mouilleron Le Captif CH,FRA
+Nottingham,GBR
+Jonkoping CH,SWE
+Quimper CH,FRA
+Poprad-Tatry CH,SVK
+Tenerife CH,ESP
+Napa CH,USA
+Kuala Lumpur,MAS
+Ilkley CH,GBR
+Roseto Degli Abruzzi 1 CH,ITA
+Florianopolis CH,BRA
+Kitzbuhel,AUT
+Geneva,SUI
+Lexington CH,USA
+Nur-Sultan 1 CH,KAZ
+St. Tropez CH,FRA
+Antalya 3 CH,TUR
+Parma,ITA
+Florence,ITA
+Marburg CH,GER
+Belem CH,POR
+Yeongwol CH,KOR
+Sao Paulo CH,BRA
+Rio de Janeiro CH,BRA
+Gimcheon CH,KOR
+Bucaramanga CH,COL
+Bogota,COL
+San Diego,USA
+Noumea CH,N/A
+Winston-Salem,USA
+Nur-Sultan 3 CH,KAZ
+Cologne 2,GER
+Maspalomas CH,ESP
+Champaign-Urbana CH,USA
+Perugia CH,ITA
+Tenerife 1 CH,ESP
+Napoli2 CH,ITA
+Orlando CH,USA
+Mauthausen CH,AUT
+Forli 1 CH,ITA
+Recanati CH,ITA
 Wroclaw CH,POL
-Sunrise CH,USA
-Dubai,UAE
-Stockholm,SWE
-Istanbul2 CH,TUR
+Cordenons CH,ITA
+Cleveland CH,USA
+Las Palmas 1 CH,ESP
+San Benedetto Del Tronto CH,ITA
+Genova CH,ITA
+Miami Masters,USA
+Moscow,RUS
+Orleans CH,FRA
+Maia 1 CH,POR
+Le Gosier CH,N/A
+Tigre 2 CH,ARG
+Metz,FRA
+Quimper 1 CH,FRA
+Aptos CH,USA
+Tempe CH,USA
+Dallas,USA
+Bucharest,ROU
+Maui CH,USA
+St. Remy CH,FRA
+Nanjing CH,CHN
+St. Petersburg 2 CH,RUS
+Zug CH,SUI
+Manila CH,PHI
+Troisdorf CH,GER
+Biel CH,SUI
+Braunschweig CH,GER
+Santiago 1 CH,CHI
+Roseto Degli Abruzzi 2 CH,ITA
+Troyes CH,FRA
+Meerbusch CH,GER
+Nottingham 1 CH,GBR
+Belgrade CH,SRB
+Dallas CH,USA
+Lille CH,FRA
+Guangzhou CH,CHN
+Naples,ITA
+Cordoba,ARG	
+Sao Paulo4 CH,BRA
+Santa Cruz CH,USA
+Segovia CH,ESP
+Santiago 2 CH,CHI
+Binghamton CH,USA
+Singapore CH,SIN
+Belgrade,SRB
+Antalya 2 CH,TUR
+Panama City CH,USA
+Saint-Brieuc CH,FRA
+Bengaluru 1 CH,IND
+Ambato CH,ECU
+Rio Quente CH,BRA
+Shanghai CH,CHN
+Antalya 1 CH,TUR
+Pune CH,IND
+Heilbronn CH,GER
+Atp Cup,AUS
+Petange CH,LUX
+Forli 5 CH,ITA
+Dusseldorf,GER
+Kitzbuhel CH,AUT
+Caltanissetta CH,ITA
+Villena CH,ESP
+Nur-Sultan 4 CH,KAZ
+Brasov CH,ROU
+Toulouse CH,FRA
+Houston,USA
+San Benedetto del Tronto CH,ITA
+Szczecin CH,POL
+Monterrey CH,MEX
+Almaty 1 CH,KAZ
 Auckland,NZL
+London Olympics,GBR
+Maia CH,POR
+Timisoara CH,ROU
+Indianapolis CH,USA
+Ismaning CH,GER
+Forli 2 CH,ITA
+Nongbo CH,CHN
+Manacor CH,ESP
+Great Ocean Road Open,AUS
+Aix-En-Provence CH,FRA
+San Francisco CH,USA
+Winnetka CH,USA
+Dubai,UAE
+Tel Aviv,ISR
+Recife2 CH,BRA
+Sardinia,ITA
+Rome  CH,ITA
+Oberstaufen CH,GER
+Poznan CH,POL
+Ludwigshafen CH,GER
+Blumenau CH,BRA
+Bucharest CH,ROU
+Marrakech CH,MAR
+Playford CH,AUS
+Istanbul CH,TUR
+Sofia,BUL
+Rijeka CH,CRO
+Turin CH,ITA
+Slovakia CH,SVK
+Medellin CH,COL
+Savannah CH,USA
+Bastad CH,SWE
+Sunrise CH,USA
+Gstaad,SUI
+Marseille,FRA
+Porto Alegre CH,BRA
+Jinan CH,CHN
+Manama CH,BRN
 Tokyo Olympics,JPN
+Trieste CH,ITA
+Blois CH,FRA
+Monza CH,ITA
+Buenos Aires CH,ARG
+Budapest CH,HUN
+Orlando 1 CH,USA
+Nottingham CH,GBR
+Kazan CH,RUS
+Istanbul 1 CH,TUR
+Seoul,KOR
+Burnie CH,AUS
+Sydney CH,AUS
+Pau CH,FRA
+Doha,QAT
+Basel,SUI
+Charlottesville CH,USA
+Morelos CH,MEX
+Stockton CH,USA
+Newport,USA
+Oeiras CH,POR
+Lima 1 CH,PER
+Chitre CH,PAN
+Barletta CH,ITA
+Fergana CH,UZB
+Madrid Masters,ESP
+Agri CH,TUR
+Aix En Provence CH,FRA
+Tyumen CH,RUS
+Oeiras 1 CH,POR
+Aachen CH,GER
+Launceston CH,AUS
+Pune,IND
+Atlanta,USA
+Bordeaux CH,FRA
+Courmayeur CH,ITA
+Prostejov CH,CZE
+Liberec  CH,CZE
+NextGen Finals,ITA
+Liuzhou CH,CHN
+Rimini CH,ITA
+Santa Cruz De La Sierra CH,BOL
+Belo Horizonte CH,BRA
+ATP Challenger Tour Finals CH,N/A
+Ningbo CH,CHN
+Honolulu CH,USA
+Palermo CH,ITA
+Ercolano CH,ITA
+Memphis,USA
+St. Brieuc CH,FRA
+Shymkent 2 CH,KAZ
+Marbella,ESP
+Orlando 2 CH,USA
+Belo Horizonte2 CH,BRA
+San Jose,USA
+Cagliari,ITA
+Poprad Tatry CH,SLO
+Qingdao CH,CHN
+Gatineau CH,CAN
+Prague CH,CZE
+Murray River Open,AUS
+Tashkent CH,UZB
+Tunis CH,TUN
+Cassis CH,FRA
+Tianjin CH,CHN
+Campos Do Jordao CH,BRA
+Murcia CH,ESP
+Estoril,POR
+Seville CH,ESP
+Moscow CH,RUS
+Orbetello CH,ITA
+Oeiras 4 CH,POR
+Chengdu,CHN
+Indian Wells CH,USA
+Shymkent 1 CH,KAZ
+Zhuhai CH,CHN
+Trnava CH,SVK
+Nice,FRA
+Washington,USA
+Manta CH,ECU
+Jersey CH,GBR
+Delray Beach,USA
+Shymkent CH,KAZ
+Traralgon2 CH,USA
+Nanchang CH,CHN
+Lisboa CH,POR
+Cordoba CH,ESP
+Adelaide,AUS
+Marrakech,MAR
+Antalya 4 CH,TUR
+Cary 1 CH,USA
+Hamburg CH,GER
+Rimouski CH,CAN
+Australian Open,AUS
+Rome 2 CH,ITA
+Campinas CH,BRA
+Los Cabos,MEX
+Rio De Janeiro CH,BRA
+Brest CH,BLR
+Shenzhen CH,CHN
+Augsburg CH,GER
+Zagreb CH,CRO
+Brisbane,AUS
+St. Petersburg,RUS
+Liberec CH,CZE
+Johannesburg,RSA
+Potchefstroom 1 CH,RSA
+Tokyo,JPN
+Sarajevo CH,BIH
+Sevilla CH,ESP
+Oeiras 2 CH,POR
+Bergamo CH,ITA
+Lyon CH,FRA
+Us Open,USA
+Pereira CH,COL
+Bastad,SWE
+Cologne 1,GER
+Eastbourne,GBR
+Mallorca CH,ESP
+Anning CH,CHN
+Belgrade 2,SRB
+Santiago,CHI
+Ho Chi Minh City CH,VIE
+Verona CH,ITA
+Curitiba CH,BRA
+Guimaraes CH,POR
+Pingguo CH,CHN
+Istanbul 2 CH,TUR
+Charleston CH,USA
+Milan CH,ITA
+Fano CH,ITA
+Barcelona CH,ESP
+Turino CH,ITA
+Antwerp,BEL
+Ortisei CH,ITA
+Roanne CH,FRA
+Nonthaburi 2 CH,THA
+Doha Aus Open Qualies,QAT
+Biella 5 CH,ITA
+Madrid CH,ESP
+New Haven,USA
+Portoroz CH,SLO
+Istanbul2 CH,TUR
+Sophia Antipolis CH,FRA
+Salinas CH,USA
+Buenos Aires,ARG
+Nottingham 2 CH,GBR
+Saint Brieuc CH,FRA
+Genoa CH,ITA
+Eskisehir CH,TUR
+Casablanca,MAR
+Coquimbo CH,CHI
+Bendigo CH,AUSA
+Potro Alegre CH,BRA
+Batman CH,TUR
+Astana II CH,KAZ
+Canada Masters,CAN
+Bercuit CH,BEL
+San Marino CH,SMR
+Toyota CH,JPN
+Lyon  CH,FRA
+St Petersburg,RUS
+Arad CH,ROU
+Florence  CH,ITA
+Almaty CH,KAZ
+Calgary  CH,CAN
+Almaty 2 CH,KAZ
+Bari CH,ITA
+Vienna,AUT
+El Espinar CH,ESP
+Stuttgart,GER
+Iasi CH,ROU
+Montpellier,FRA
+Eckental CH,GER
+Lugano CH,SUI
+Floridablanca CH,PHI
+Cherbourg CH,FRA
+Kun-Ming CH,CHN
+Wuhai CH,CHN
+Indian Wells Masters,USA
+Columbus CH,USA
+L'Aquila CH,ITA
+Ottignies Louvain CH,BEL
+Prague 3 CH,CZE
+Irving CH,USA
+Lermontov CH,RUS
+Bangkok2 CH,THA
+Biella 1 CH,ITA
+Biella 7 CH,ITA
+Jerusalem CH,ISR
+Melbourne,AUS
+Chengdu CH,CHN
+Cuernavaca CH,MEX
+Karshi CH,UZB
+Salinas 1 CH,ECU
+Manchester CH,GBR
+Tenerife 2 CH,ESP
+Bratislava CH,SVK
+Koblenz CH,GER
+Braga CH,POR
+Istanbul,TUR
+Biella 4 CH,ITA
+Cincinnati Masters,USA
+Beijing CH,CHN
+Nur-Sultan CH,KAZ
+St Remy de Provence CH,FRA
+Kaohsiung CH,TPE
+Mexico City CH,MEX
+Prague 2 CH,CZE
+Zhangjiagang CH,CHN
+Bratislava 2 CH,SVK
+Amersfoort CH,NED
+San Sebastian CH,ESP
+Sydney1 CH,AUS
+Zagreb,CRO
+Bogota2 CH,COL
+Bangkok,THA
+San Jose CH,USA
+Prague 1 CH,CZE
+Rhodes CH,GRE
+Queen's Club,GBR
+San Remo CH,ITA
+St Brieuc CH,FRA
+Potchefstroom 2 CH,RSA
+Costa Do Sauipe,BRA

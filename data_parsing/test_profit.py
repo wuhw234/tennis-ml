@@ -4,8 +4,8 @@ import numpy as np
 
 def test(hidden_layer, learning_rate, dropout, trial):
     all_rows = []
-    # with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
-    with open(f'data/real1.csv', newline='') as readfile:
+    with open(f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv', newline='') as readfile:
+    # with open(f'data/real3.csv', newline='') as readfile:
         reader = csv.reader(readfile, delimiter=',')
         next(reader)
         for row in reader:
@@ -17,11 +17,18 @@ def test(hidden_layer, learning_rate, dropout, trial):
     wins = []
     loss_prob = []
     win_prob = []
+    win_size = []
 
     for i, row in enumerate(all_rows):
-        if i < 2500: #first year 2010, unstable ratings
+        # if i < 2500:
+        #     continue
+        if i < 16036: # start of 2017, beginning of testing set
             continue
-        # if i > 5000:
+        # if i > 18391: #end of 2017
+        #     break
+        # if i > 20853: # end of 2018
+        #     break
+        # if i > 23221: #end of2019
         #     break
         p1_win = float(row[-4])
         p1_prediction = float(row[-1])
@@ -29,8 +36,8 @@ def test(hidden_layer, learning_rate, dropout, trial):
         p2_prob = float(row[-2])
         p1_prob = float(row[-3])
 
-        # if p1_prediction > p1_prob:
-        if p1_prediction > p1_prob and p1_prediction > 0.8:
+        if p1_prediction > p1_prob:
+        # if p1_prediction > p1_prob and p1_prediction > 0.8:
             bet_size = kelly(200, p1_prob, p1_prediction)
             if p1_win:
                 decimal_odds = 1 / p1_prob
@@ -38,6 +45,7 @@ def test(hidden_layer, learning_rate, dropout, trial):
                 total += gain
                 wins.append(p1_prob)
                 win_prob.append(p1_prediction-p1_prob)
+                win_size.append(gain)
             else:
                 total -= bet_size
                 losses.append(p1_prob)
@@ -45,14 +53,15 @@ def test(hidden_layer, learning_rate, dropout, trial):
 
 
             bet_results.append(total)
-        # elif p2_prediction > p2_prob:
-        elif p2_prediction > p2_prob and p2_prediction > 0.8:
+        elif p2_prediction > p2_prob:
+        # elif p2_prediction > p2_prob and p2_prediction > 0.8:
             bet_size = kelly(200, p2_prob, p2_prediction)
             if not p1_win:
                 decimal_odds = 2 / p2_prob
                 gain = (bet_size * decimal_odds) - bet_size
                 wins.append(p2_prob)
                 win_prob.append(p2_prediction-p2_prob)
+                win_size.append(gain)
 
             else:
                 total -= bet_size
@@ -65,23 +74,22 @@ def test(hidden_layer, learning_rate, dropout, trial):
             continue
 
     min_balance = min(bet_results)
-    print('max balance', max(bet_results))
-    print('min_balance', min(bet_results))
-    print('end', bet_results[-1])
-    print('avg win diff', sum(win_prob) / len(win_prob))
-    print('avg loss diff', sum(loss_prob) / len(loss_prob))
-    print('num_wins', len(win_prob))
-    print('num_losses', len(loss_prob))
+    # print('max balance', max(bet_results))
+    # print('min_balance', min(bet_results))
+    # print('end', bet_results[-1])
+    # print('num_wins', len(win_prob))
+    # print('num_losses', len(loss_prob))
+    # print('avg gain', sum(win_size)/ len(win_size))
 
-    plt.rcParams["figure.figsize"] = [7.50, 3.50]
-    plt.rcParams["figure.autolayout"] = True
+    # plt.rcParams["figure.figsize"] = [7.50, 3.50]
+    # plt.rcParams["figure.autolayout"] = True
 
-    x = np.array(bet_results)
+    # x = np.array(bet_results)
 
-    plt.title("Line graph")
-    plt.plot(x, color="red")
+    # plt.title("Line graph")
+    # plt.plot(x, color="red")
 
-    plt.show()
+    # plt.show()
 
     return min_balance
         
@@ -101,6 +109,6 @@ def calculate_win():
 
 if __name__ == '__main__':
     # test(1300, 0.0005, 0.35, 3)
-    test(1300, 0.0005, 0.35, 3)
+    test(1300, 0.0005, 0.43, 2)
 
     

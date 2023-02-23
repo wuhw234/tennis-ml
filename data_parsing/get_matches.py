@@ -2,6 +2,7 @@ import csv
 import random
 from glicko2 import Player
 from datetime import date
+import pickle
 
 def get_data(start_year, end_year, output_filepath):
     match_data = gather_data(start_year, end_year)
@@ -46,20 +47,55 @@ def invalid_entry(row):
 
 def write_data(data, filepath):
     header = ['match_hash','tourney_name','tourney_date','is_hard', 'is_clay', 'is_grass',
-              'is_bo5', 'p1_name', 'p2_name', 'p1_height', 'p1_lefty', 'p1_age','p1_home', 'p1_rating', 'p1_dev',
+              'is_bo5', 'p1_name', 'p2_name', 'p1_height', 'p1_age','p1_home', 'p1_rating', 'p1_dev',
               'p1_surface_rating', 'p1_surface_dev', 'p1_recent_rating', 'p1_w', 'p1_l', 'p1_surface_w', 'p1_surface_l','p1_inactive_days',
-              'p2_height', 'p2_lefty', 'p2_age','p2_home', 'p2_rating', 'p2_dev',
+              'p2_height', 'p2_age','p2_home', 'p2_rating', 'p2_dev',
               'p2_surface_rating', 'p2_surface_dev', 'p2_recent_rating', 'p2_w', 'p2_l', 'p2_surface_w', 'p2_surface_l', 'p2_inactive_days', 'p1_win']
     player_dict = {}
+    random_list = [i for i in range(0, len(data))]
+    random.shuffle(random_list)
+    p1_winner = set(random_list[:len(random_list) // 2])
+
 
     with open(f'{filepath}', 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
         writer.writerow(header)
 
-        for row in data:
-            write_row(writer, row, player_dict)
+        for i, row in enumerate(data):
+            p1_win = True if i in p1_winner else False
+            write_row(writer, row, player_dict, p1_win)
 
-def write_row(writer, row, player_dict):
+    clean_dict(player_dict)
+    with open('data/players.pickle', 'wb') as file:
+        pickle.dump(player_dict, file, protocol=pickle.HIGHEST_PROTOCOL)
+
+def clean_dict(player_dict):
+    for player in player_dict.keys():
+        val = player_dict[player]
+        rating = val.pop('overall')
+        clay_rating = val.pop('Clay')
+        hard_rating = val.pop('Hard')
+        grass_rating = val.pop('Grass')
+
+        val['rating'] = rating.getRating()
+        val['clay_rating'] = clay_rating.getRating()
+        val['hard_rating'] = hard_rating.getRating()
+        val['grass_rating'] = grass_rating.getRating()
+
+        val['rating_dev'] = rating.getRd()
+        val['clay_rating_dev'] = clay_rating.getRd()
+        val['hard_rating_dev'] = hard_rating.getRd()
+        val['grass_rating_dev'] = grass_rating.getRd()
+
+        val['recent_rating'] = get_recent_rating(val)
+        val.pop('recent_matches')
+        val.pop('recent_dev')
+        val.pop('recent_results')
+
+        val['inactive_days'] = get_time_since_last_match(val, date.today())
+
+def write_row(writer, row, player_dict, p1_winner):
+    #TODO: REMOVE LEFTY
     tournament_dict = get_tournament_dict()
     tourney_name = row[1]
     tourney_country = tournament_dict[tourney_name]
@@ -67,42 +103,49 @@ def write_row(writer, row, player_dict):
     is_clay = 1 if tourney_surface == 'Clay' else 0
     is_hard = 1 if tourney_surface == 'Hard' else 0
     is_grass = 1 if tourney_surface == 'Grass' else 0
-    winner_rank, loser_rank = row[45], row[47]
-    winner_name, loser_name = row[10], row[18]
+    winner_rank, loser_rank = standardize_name(row[45]), standardize_name(row[47])
+    winner_name, loser_name = standardize_name(row[10]), standardize_name(row[18])
     tourney_date = row[5]
     is_bo5 = 1 if row[24] == '5' else 0
 
-    if random.random() < 0.5: # winner is p1
-        p1_name = row[10]
-        p1_lefty = 1 if row[11] == 'L' else 0
+    if p1_winner: # winner is p1
+        p1_name = standardize_name(row[10])
         p1_height = row[12]
-        p1_home = 1 if row[13] == tourney_country else 0
+        p1_home_country = row[13]
+        p1_home = 1 if p1_home_country == tourney_country else 0
         p1_age = row[14]
-        p2_name = row[18]
-        p2_lefty = 1 if row[19] == 'L' else 0
+        p2_name = standardize_name(row[18])
         p2_height = row[20]
-        p2_home = 1 if row[21] == tourney_country else 0
+        p2_home_country = row[21]
+        p2_home = 1 if p2_home_country == tourney_country else 0
         p2_age = row[22]
         p1_win = 1
     else: # winner is p2
-        p2_name = row[10]
-        p2_lefty = 1 if row[11] == 'L' else 0
+        p2_name = standardize_name(row[10])
         p2_height = row[12]
-        p2_home = 1 if row[13] == tourney_country else 0
+        p2_home_country = row[13]
+        p2_home = 1 if p2_home_country == tourney_country else 0
         p2_age = row[14]
-        p1_name = row[18]
-        p1_lefty = 1 if row[19] == 'L' else 0
+        p1_name = standardize_name(row[18])
         p1_height = row[20]
-        p1_home = 1 if row[21] == tourney_country else 0
+        p1_home_country = row[21]
+        p1_home = 1 if p1_home_country == tourney_country else 0
         p1_age = row[22]
         p1_win = 0
 
     if p1_name not in player_dict:
         initialize_dict(player_dict, p1_name, tourney_date)
+        player_dict[p1_name]['home_country'] = p1_home_country
     if p2_name not in player_dict:
         initialize_dict(player_dict, p2_name, tourney_date)
+        player_dict[p2_name]['home_country'] = p2_home_country
 
     p1, p2 = player_dict[p1_name], player_dict[p2_name]
+    # update player age, height
+    p1['age'] = p1_age
+    p2['age'] = p2_age
+    p1['height'] = p1_height
+    p2['height'] = p2_height
     # update deviations with inactivity
     curr_year, curr_month, curr_day = int(tourney_date[:4]), int(tourney_date[4:6]), int(tourney_date[6:])
     curr_date = date(curr_year, curr_month, curr_day)
@@ -133,9 +176,9 @@ def write_row(writer, row, player_dict):
     p2_recent_rating = get_recent_rating(p2)
 
     writer.writerow([match_hash, tourney_name, tourney_date, is_hard, is_clay, is_grass, 
-                     is_bo5, p1_name, p2_name, p1_height, p1_lefty, p1_age, p1_home, p1_rating, p1_deviation,
+                     is_bo5, p1_name, p2_name, p1_height, p1_age, p1_home, p1_rating, p1_deviation,
                      p1_surface_rating, p1_surface_deviation, p1_recent_rating, p1_w, p1_l, p1_surface_w,
-                     p1_surface_l, p1_inactive_days, p2_height, p2_lefty, p2_age, p2_home, p2_rating, p2_deviation,
+                     p1_surface_l, p1_inactive_days, p2_height, p2_age, p2_home, p2_rating, p2_deviation,
                      p2_surface_rating, p2_surface_deviation, p2_recent_rating, 
                      p2_w, p2_l, p2_surface_w, p2_surface_l, p2_inactive_days, p1_win])
     # update glicko ratings and wins and losses
@@ -250,5 +293,10 @@ def get_tournament_dict():
 
     return tournament_dict
 
+def standardize_name(name):
+    alphabetic = ''.join([i for i in name if i.isalpha()])
+    lower = alphabetic.lower()
+    return lower
+
 if __name__ == '__main__':
-    get_data(2010, 2023, 'data/test.csv')
+    get_data(2000, 2023, 'data/matches.csv')

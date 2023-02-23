@@ -39,6 +39,7 @@ def get_predictions(hidden_layer, learning_rate, dropout, trial):
     dataframe_features = dataframe.copy()
 
     features_dict = {name: np.array(value) for name, value in dataframe_features.items()}
+    # print(type(features_dict['is_hard']))
 
     reloaded = tf.keras.models.load_model(f'neural_network/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}')
     # reloaded = tf.keras.models.load_model(f'neural_network/test0')
@@ -47,3 +48,6 @@ def get_predictions(hidden_layer, learning_rate, dropout, trial):
     predictions = reloaded.predict(features_dict)
 
     return predictions
+
+if __name__ == '__main__':
+    get_predictions(0, 0, 0, 0)
