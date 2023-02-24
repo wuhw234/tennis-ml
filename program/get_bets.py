@@ -5,8 +5,8 @@ import tensorflow as tf
 
 def get_bets():
     player_dict = get_player_dict()
-    p1 = 'michaelgeerts'
-    p2 = 'christianharrison'
+    p1 = 'novakdjokovic'
+    p2 = 'stefanostsitsipas'
     get_row_entry(player_dict[p1], player_dict[p2], 'USA', 'h', 1)
 def get_row_entry(p1, p2, tourney_country, tourney_surface, is_bo5):
     # go to get_predictions and see format of data_frame features
@@ -60,7 +60,7 @@ def get_row_entry(p1, p2, tourney_country, tourney_surface, is_bo5):
         'p1_inactive_days': np.array([p1_inactive_days]),
         'p2_inactive_days': np.array([p2_inactive_days]),
     }
-    reloaded = tf.keras.models.load_model('neural_network/real4')
+    reloaded = tf.keras.models.load_model('neural_network/test0')
     predictions = reloaded.predict(features_dict)
     # print(features_dict)
     print(predictions)

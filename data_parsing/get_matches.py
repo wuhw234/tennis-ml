@@ -34,6 +34,7 @@ def invalid_entry(row):
     tournament_name = row[1]
     surface = row[2]
     score = row[23]
+    ace = row[27]
     if 'Davis Cup' in tournament_name:
         return True
     elif not row[12] or not row[14] or not row[20] or not row[22]: #if height or age is missing
@@ -42,15 +43,23 @@ def invalid_entry(row):
         return True
     elif surface == 'Carpet':
         return True
+    elif not ace:
+        return True
+    elif not row[45] or not row[47]: #if no ranking available
+        return True
     else:
         return False
 
 def write_data(data, filepath):
-    header = ['match_hash','tourney_name','tourney_date','is_hard', 'is_clay', 'is_grass',
-              'is_bo5', 'p1_name', 'p2_name', 'p1_height', 'p1_age','p1_home', 'p1_rating', 'p1_dev',
-              'p1_surface_rating', 'p1_surface_dev', 'p1_recent_rating', 'p1_w', 'p1_l', 'p1_surface_w', 'p1_surface_l','p1_inactive_days',
-              'p2_height', 'p2_age','p2_home', 'p2_rating', 'p2_dev',
-              'p2_surface_rating', 'p2_surface_dev', 'p2_recent_rating', 'p2_w', 'p2_l', 'p2_surface_w', 'p2_surface_l', 'p2_inactive_days', 'p1_win']
+    header = ['match_hash', 'tourney_name', 'tourney_date', 'is_hard', 'is_clay', 'is_grass', 
+                'is_bo5', 'p1_name', 'p2_name', 'p1_home', 'p2_home', 'height_diff', 'age_diff', 'inactive_diff',
+                'rating_diff', 'recent_30_diff', 'recent_20_diff', 'recent_10_diff', 'deviation_diff', 'surface_rating_diff', 'surface_deviation_diff',
+                'w_diff', 'l_diff', 'surface_w_diff', 'surface_l_diff',
+                'ace_30', 'df_30', 'first_serve_30', 'second_serve_30', 'first_return_30', 'second_return_30',
+                'ace_20', 'df_20', 'first_serve_20', 'second_serve_20', 'first_return_20', 'second_return_20',
+                'ace_10', 'df_10', 'first_serve_10', 'second_serve_10', 'first_return_10', 'second_return_10',
+                'p1_rank', 'p2_rank',
+                'p1_win']
     player_dict = {}
     random_list = [i for i in range(0, len(data))]
     random.shuffle(random_list)
@@ -65,9 +74,9 @@ def write_data(data, filepath):
             p1_win = True if i in p1_winner else False
             write_row(writer, row, player_dict, p1_win)
 
-    clean_dict(player_dict)
-    with open('data/players.pickle', 'wb') as file:
-        pickle.dump(player_dict, file, protocol=pickle.HIGHEST_PROTOCOL)
+    # clean_dict(player_dict)
+    # with open('data/players.pickle', 'wb') as file:
+    #     pickle.dump(player_dict, file, protocol=pickle.HIGHEST_PROTOCOL)
 
 def clean_dict(player_dict):
     for player in player_dict.keys():
@@ -103,6 +112,8 @@ def write_row(writer, row, player_dict, p1_winner):
     is_hard = 1 if tourney_surface == 'Hard' else 0
     is_grass = 1 if tourney_surface == 'Grass' else 0
     winner_rank, loser_rank = row[45], row[47]
+    p1_rank = int(winner_rank) if p1_winner else int(loser_rank)
+    p2_rank = int(loser_rank) if p1_winner else int(winner_rank)
     winner_name, loser_name = standardize_name(row[10]), standardize_name(row[18])
     tourney_date = row[5]
     is_bo5 = 1 if row[24] == '5' else 0
@@ -118,6 +129,49 @@ def write_row(writer, row, player_dict, p1_winner):
         p2_home_country = row[21]
         p2_home = 1 if p2_home_country == tourney_country else 0
         p2_age = row[22]
+
+        p1_ace = row[27]
+        p1_df = row[28]
+        p1_svpt = row[29]
+        p1_1st_in = row[30]
+        p1_2nd_in = int(p1_svpt) - int(p1_1st_in) - int(p1_df)
+        p1_1st_won = row[31]
+        p1_2nd_won = row[32]
+        if not p1_1st_in or not p1_svpt or not p1_2nd_in:
+            return
+        p1_1st_percentage = int(p1_1st_in) / int(p1_svpt)
+        p1_1st_win = int(p1_1st_won) / int(p1_1st_in)
+        p1_2nd_percentage = p1_2nd_in / int(p1_svpt)
+        p1_2nd_win = int(p1_2nd_won) / p1_2nd_in
+
+        p1_1st_combined = p1_1st_percentage * p1_1st_win
+        p1_2nd_combined = p1_2nd_percentage * p1_2nd_win
+        p1_ace_percentage = int(p1_ace) / int(p1_svpt)
+        p1_df_percentage = int(p1_df) / int(p1_svpt)
+        p2_return_1st = 1 - p1_1st_win
+        p2_return_2nd = 1 - p1_2nd_win
+
+        p2_ace = row[36]
+        p2_df = row[37]
+        p2_svpt = row[38]
+        p2_1st_in = row[39]
+        p2_2nd_in = int(p2_svpt) - int(p2_1st_in) - int(p2_df)
+        p2_1st_won = row[40]
+        p2_2nd_won = row[41]
+        if not p2_1st_in or not p2_svpt or not p2_2nd_in:
+            return
+        p2_1st_percentage = int(p2_1st_in) / int(p2_svpt)
+        p2_1st_win = int(p2_1st_won) / int(p2_1st_in)
+        p2_2nd_percentage = p2_2nd_in / int(p2_svpt)
+        p2_2nd_win = int(p2_2nd_won) / p2_2nd_in
+
+        p2_1st_combined = p2_1st_percentage * p2_1st_win
+        p2_2nd_combined = p2_2nd_percentage * p2_2nd_win
+        p2_ace_percentage = int(p2_ace) / int(p2_svpt)
+        p2_df_percentage = int(p2_df) / int(p2_svpt)
+        p1_return_1st = 1 - p2_1st_win
+        p1_return_2nd = 1 - p2_2nd_win
+
         p1_win = 1
     else: # winner is p2
         p2_name = standardize_name(row[10])
@@ -132,6 +186,49 @@ def write_row(writer, row, player_dict, p1_winner):
         p1_age = row[22]
         p1_win = 0
 
+        p2_ace = row[27]
+        p2_df = row[28]
+        p2_svpt = row[29]
+        p2_1st_in = row[30]
+        p2_2nd_in = int(p2_svpt) - int(p2_1st_in) - int(p2_df)
+        if not p2_1st_in or not p2_svpt or not p2_2nd_in:
+            return
+        p2_1st_won = row[31]
+        p2_2nd_won = row[32]
+        p2_1st_percentage = int(p2_1st_in) / int(p2_svpt)
+        p2_1st_win = int(p2_1st_won) / int(p2_1st_in)
+        p2_2nd_percentage = p2_2nd_in / int(p2_svpt)
+        p2_2nd_win = int(p2_2nd_won) / p2_2nd_in
+
+
+        p2_1st_combined = p2_1st_percentage * p2_1st_win
+        p2_2nd_combined = p2_2nd_percentage * p2_2nd_win
+        p2_ace_percentage = int(p2_ace) / int(p2_svpt)
+        p2_df_percentage = int(p2_df) / int(p2_svpt)
+        p1_return_1st = 1 - p2_1st_win
+        p1_return_2nd = 1 - p2_2nd_win
+
+        p1_ace = row[36]
+        p1_df = row[37]
+        p1_svpt = row[38]
+        p1_1st_in = row[39]
+        p1_2nd_in = int(p1_svpt) - int(p1_1st_in) - int(p1_df)
+        p1_1st_won = row[40]
+        p1_2nd_won = row[41]
+        if not p1_1st_in or not p1_svpt or not p1_2nd_in:
+            return
+        p1_1st_percentage = int(p1_1st_in) / int(p1_svpt)
+        p1_1st_win = int(p1_1st_won) / int(p1_1st_in)
+        p1_2nd_percentage = p1_2nd_in / int(p1_svpt)
+        p1_2nd_win = int(p1_2nd_won) / p1_2nd_in
+
+        p1_1st_combined = p1_1st_percentage * p1_1st_win
+        p1_2nd_combined = p1_2nd_percentage * p1_2nd_win
+        p1_ace_percentage = int(p1_ace) / int(p1_svpt)
+        p1_df_percentage = int(p1_df) / int(p1_svpt)
+        p2_return_1st = 1 - p1_1st_win
+        p2_return_2nd = 1 - p1_2nd_win
+
     if p1_name not in player_dict:
         initialize_dict(player_dict, p1_name, tourney_date)
         player_dict[p1_name]['home_country'] = p1_home_country
@@ -140,6 +237,16 @@ def write_row(writer, row, player_dict, p1_winner):
         player_dict[p2_name]['home_country'] = p2_home_country
 
     p1, p2 = player_dict[p1_name], player_dict[p2_name]
+    #update match statistics
+    if len(p1['serve_stats']) > 30:
+        p1['serve_stats'].pop(0)
+    if len(p2['serve_stats']) > 30:
+        p2['serve_stats'].pop(0)
+    p1['serve_stats'].append([p1_ace_percentage, p1_df_percentage, p1_1st_combined,
+                              p1_2nd_combined, p1_return_1st, p1_return_2nd])
+    p2['serve_stats'].append([p2_ace_percentage, p2_df_percentage, p2_1st_combined,
+                              p2_2nd_combined, p2_return_1st, p2_return_2nd])
+    
     # update player age, height
     p1['age'] = p1_age
     p2['age'] = p2_age
@@ -171,33 +278,83 @@ def write_row(writer, row, player_dict, p1_winner):
     w_points, l_points = row[46], row[48]
     match_hash = str(curr_year) + winner_name[0] + winner_name[-2:] + winner_rank + loser_name[0] + loser_name[-2:] + loser_rank + w_points + l_points
 
-    p1_recent_rating = get_recent_rating(p1)
-    p2_recent_rating = get_recent_rating(p2)
+    height_diff = float(p1_height) - float(p2_height)
+    age_diff = float(p1_age) - float(p2_age)
+    inactive_diff = int(p1_inactive_days) - int(p2_inactive_days)
+    rating_diff = float(p1_rating) - float(p2_rating)
+    deviation_diff = float(p1_deviation )- float(p2_deviation)
+    surface_rating_diff = float(p1_surface_rating) - float(p2_surface_rating)
+    surface_deviation_diff = float(p1_surface_deviation) - float(p2_surface_deviation)
+    w_diff = int(p1_w) - int(p2_w)
+    l_diff = int(p1_l) - int(p2_l)
+    surface_w_diff = int(p1_surface_w) - int(p2_surface_w)
+    surface_l_diff = int(p1_surface_l) - int(p2_surface_l)
 
-    writer.writerow([match_hash, tourney_name, tourney_date, is_hard, is_clay, is_grass, 
-                     is_bo5, p1_name, p2_name, p1_height, p1_age, p1_home, p1_rating, p1_deviation,
-                     p1_surface_rating, p1_surface_deviation, p1_recent_rating, p1_w, p1_l, p1_surface_w,
-                     p1_surface_l, p1_inactive_days, p2_height, p2_age, p2_home, p2_rating, p2_deviation,
-                     p2_surface_rating, p2_surface_deviation, p2_recent_rating, 
-                     p2_w, p2_l, p2_surface_w, p2_surface_l, p2_inactive_days, p1_win])
+    if p1_w + p1_l >= 30 and p2_w + p2_l >= 30: # only train on players that have more than 30 matches to prevent unstable ratings
+        p1_recent_30, p1_recent_20, p1_recent_10 = get_recent_rating(p1)
+        p2_recent_30, p2_recent_20, p2_recent_10 = get_recent_rating(p2)
+        recent_30_diff = float(p1_recent_30) - float(p2_recent_30)
+        recent_20_diff = float(p1_recent_20) - float(p2_recent_20)
+        recent_10_diff = float(p1_recent_10) - float(p2_recent_10)
+        ace_30, df_30, first_serve_30, second_serve_30, first_return_30, second_return_30 = get_match_stats(p1['serve_stats'], p2['serve_stats'])
+        ace_20, df_20, first_serve_20, second_serve_20, first_return_20, second_return_20 = get_match_stats(p1['serve_stats'][10:], p2['serve_stats'][10:])
+        ace_10, df_10, first_serve_10, second_serve_10, first_return_10, second_return_10 = get_match_stats(p1['serve_stats'][20:], p2['serve_stats'][20:])
+
+        writer.writerow([match_hash, tourney_name, tourney_date, is_hard, is_clay, is_grass, 
+                        is_bo5, p1_name, p2_name, p1_home, p2_home, height_diff, age_diff, inactive_diff,
+                        rating_diff, recent_30_diff, recent_20_diff, recent_10_diff, deviation_diff, surface_rating_diff, surface_deviation_diff,
+                        w_diff, l_diff, surface_w_diff, surface_l_diff,
+                        ace_30, df_30, first_serve_30, second_serve_30, first_return_30, second_return_30,
+                        ace_20, df_20, first_serve_20, second_serve_20, first_return_20, second_return_20,
+                        ace_10, df_10, first_serve_10, second_serve_10, first_return_10, second_return_10,
+                        p1_rank, p2_rank,
+                        p1_win])
     # update glicko ratings and wins and losses
     update_ratings(p1, p2, p1_win, tourney_surface)
     update_recent_rating(p1, p2_rating, p2_deviation, True if p1_win else False)
     update_recent_rating(p2, p1_rating, p1_deviation, False if p1_win else True)
 
 
+def get_match_stats(p1_arr, p2_arr):
+    p1_ace, p1_df, p1_first_serve, p1_second_serve, p1_first_return, p1_second_return = get_stats(p1_arr)
+    p2_ace, p2_df, p2_first_serve, p2_second_serve, p2_first_return, p2_second_return = get_stats(p2_arr)
+    ace_diff = p1_ace - p2_ace
+    df_diff = p1_df - p2_df
+    first_serve_diff = p1_first_serve - p2_first_serve
+    second_serve_diff = p1_second_serve - p2_second_serve
+    first_return_diff = p1_first_return - p2_first_return
+    second_return_diff = p1_second_return - p2_second_return
+
+    return ace_diff, df_diff, first_serve_diff, second_serve_diff, first_return_diff, second_return_diff
+
+def get_stats(arr):
+    ace = sum(arr[0] for arr in arr) / len(arr)
+    df = sum(arr[1] for arr in arr) / len(arr)
+    first_serve = sum(arr[2] for arr in arr) / len(arr)
+    second_serve = sum(arr[3] for arr in arr) / len(arr)
+    first_return = sum(arr[4] for arr in arr) / len(arr)
+    second_return = sum(arr[5] for arr in arr) / len(arr)
+
+    return ace, df, first_serve, second_serve, first_return, second_return
+
+
 def get_recent_rating(player):
-    player_rating = Player()
+    rating_30 = Player()
+    rating_20 = Player()
+    rating_10 = Player()
     recent_matches, recent_dev, recent_results = player['recent_matches'], player['recent_dev'], player['recent_results']
     if not recent_matches:
-        return player_rating.getRating()
+        return rating_30.getRating()
     
-    player_rating.update_player(recent_matches, recent_dev, recent_results)
+    rating_30.update_player(recent_matches, recent_dev, recent_results)
+    rating_20.update_player(recent_matches[10:], recent_dev[10:], recent_dev[10:])
+    rating_10.update_player(recent_matches[20:], recent_dev[20:], recent_dev[20:])
 
-    return player_rating.getRating()
+
+    return rating_30.getRating(), rating_20.getRating(), rating_10.getRating()
 
 def update_recent_rating(player, opponent_rating, opponent_dev, result):
-    if len(player['recent_matches']) > 13:
+    if len(player['recent_matches']) > 30:
         player['recent_matches'].pop(0)
         player['recent_dev'].pop(0)
         player['recent_results'].pop(0)
@@ -242,7 +399,7 @@ def initialize_dict(player_dict, name, tourney_date):
                                  'last_hard_match': tourney_date, 'last_grass_match': tourney_date,
                                  'w': 0, 'l': 0, 'Clay_w': 0, 'Clay_l': 0, 'Hard_w': 0, 'Hard_l': 0,
                                  'Grass_w': 0, 'Grass_l': 0, 'recent_matches': [], 'recent_dev': [],
-                                 'recent_results': [] }
+                                 'recent_results': [], 'serve_stats': [] }
 
 def update_inactivity(player, curr_date, rating_type):
     if rating_type == 'overall':
@@ -298,4 +455,4 @@ def standardize_name(name):
     return lower
 
 if __name__ == '__main__':
-    get_data(2000, 2023, 'data/matches.csv')
+    get_data(2010, 2023, 'data/matches_test.csv')
