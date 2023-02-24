@@ -67,8 +67,8 @@ def pair_data(odds_dict, unpaired_filepath, paired_filepath):
             all_rows.append(row)
     
     header_row = all_rows.pop(0)
-    header_row.append('p1_odds')
-    header_row.append('p2_odds')
+    header_row.append('p1_prob')
+    header_row.append('p2_prob')
     paired.append(header_row)
 
     for row in all_rows:
@@ -79,12 +79,15 @@ def pair_data(odds_dict, unpaired_filepath, paired_filepath):
             winner_odds, loser_odds = odds_dict[match_hash]['w_odds'], odds_dict[match_hash]['l_odds']
             if not winner_odds or not loser_odds:
                 continue
+            winner_prob, loser_prob = 1/float(winner_odds), 1/float(loser_odds)
+            if not winner_prob or not loser_prob:
+                continue
             if p1_win == '1':
-                row.append(winner_odds)
-                row.append(loser_odds)
+                row.append(winner_prob)
+                row.append(loser_prob)
             else:
-                row.append(loser_odds)
-                row.append(winner_odds)
+                row.append(loser_prob)
+                row.append(winner_prob)
             paired.append(row)
     write_paired(paired, paired_filepath)
 
@@ -111,33 +114,11 @@ def invalid_entry(row):
 
 
 if __name__ == '__main__':
-    # predictions_csv = f'data/test0.csv'
-    # predictions = get_predictions(0,0,0,0)
-    # add_predictions(predictions, predictions_csv)
-    unpaired_csv = 'data/unpaired.csv'
+    unpaired_csv = 'data/matches_test.csv'
     paired_csv = 'data/paired_odds.csv'
-    get_data(2010, 2023, unpaired_csv)
+    # get_data(2010, 2023, unpaired_csv)
     odds_dict = get_csv_info(2010, 2023)
     pair_data(odds_dict, unpaired_csv, paired_csv)
-
-    # good_trials = []
-    # for hidden_layer in range(100, 1601, 300):
-    #     for learning_rate in range(2, 33, 5):
-    #         learning_rate = learning_rate / 10000
-    #         for int_dropout in range(10, 81, 10):
-    #             dropout = int_dropout / 100
-    #             for trial in range(11):
-    #                 predictions_csv = f'data/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}.csv'
-    #                 # predictions = get_predictions(hidden_layer, learning_rate, dropout, trial)
-    #                 # add_predictions(predictions, predictions_csv)
-    #                 result = test(hidden_layer, learning_rate, dropout, trial)
-    #                 good_trials.append((result, predictions_csv))
-    
-    # good_trials.sort(reverse=True)
-    # for i in range(0, 15):
-    #     print(good_trials[i])
+    predictions = get_predictions()
+    add_predictions(predictions, 'data/predictions.csv')
                     
-
-    # # predictions_csv = f'data/test0.csv'
-    # # predictions = get_predictions(0,0,0,0)
-    # # add_predictions(predictions, predictions_csv)

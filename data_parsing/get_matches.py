@@ -58,7 +58,7 @@ def write_data(data, filepath):
                 'ace_30', 'df_30', 'first_serve_30', 'second_serve_30', 'first_return_30', 'second_return_30',
                 'ace_20', 'df_20', 'first_serve_20', 'second_serve_20', 'first_return_20', 'second_return_20',
                 'ace_10', 'df_10', 'first_serve_10', 'second_serve_10', 'first_return_10', 'second_return_10',
-                'p1_rank', 'p2_rank',
+                'rankings_diff',
                 'p1_win']
     player_dict = {}
     random_list = [i for i in range(0, len(data))]
@@ -74,13 +74,17 @@ def write_data(data, filepath):
             p1_win = True if i in p1_winner else False
             write_row(writer, row, player_dict, p1_win)
 
-    # clean_dict(player_dict)
-    # with open('data/players.pickle', 'wb') as file:
-    #     pickle.dump(player_dict, file, protocol=pickle.HIGHEST_PROTOCOL)
+    clean_dict(player_dict)
+    with open('data/players.pickle', 'wb') as file:
+        pickle.dump(player_dict, file, protocol=pickle.HIGHEST_PROTOCOL)
 
 def clean_dict(player_dict):
+    invalid_players = []
     for player in player_dict.keys():
         val = player_dict[player]
+        if val['w'] + val['l'] < 30:
+            invalid_players.append(player)
+            continue
         rating = val.pop('overall')
         clay_rating = val.pop('Clay')
         hard_rating = val.pop('Hard')
@@ -96,12 +100,18 @@ def clean_dict(player_dict):
         val['hard_rating_dev'] = hard_rating.getRd()
         val['grass_rating_dev'] = grass_rating.getRd()
 
-        val['recent_rating'] = get_recent_rating(val)
+        val['recent_30'], val['recent_20'], val['recent_10'] = get_recent_rating(val)
+        val['ace_30'], val['df_30'], val['first_serve_30'], val['second_serve_30'], val['first_return_30'], val['second_return_30'] = get_stats(val['serve_stats'])
+        val['ace_20'], val['df_20'], val['first_serve_20'], val['second_serve_20'], val['first_return_20'], val['second_return_20'] = get_stats(val['serve_stats'][10:])
+        val['ace_10'], val['df_10'], val['first_serve_10'], val['second_serve_10'], val['first_return_10'], val['second_return_10'] = get_stats(val['serve_stats'][20:])
         val.pop('recent_matches')
         val.pop('recent_dev')
         val.pop('recent_results')
 
         val['inactive_days'] = get_time_since_last_match(val, date.today())
+
+    for player in invalid_players:
+        player_dict.pop(player)
 
 def write_row(writer, row, player_dict, p1_winner):
     tournament_dict = get_tournament_dict()
@@ -114,6 +124,7 @@ def write_row(writer, row, player_dict, p1_winner):
     winner_rank, loser_rank = row[45], row[47]
     p1_rank = int(winner_rank) if p1_winner else int(loser_rank)
     p2_rank = int(loser_rank) if p1_winner else int(winner_rank)
+    rankings_diff = p1_rank - p2_rank
     winner_name, loser_name = standardize_name(row[10]), standardize_name(row[18])
     tourney_date = row[5]
     is_bo5 = 1 if row[24] == '5' else 0
@@ -247,7 +258,9 @@ def write_row(writer, row, player_dict, p1_winner):
     p2['serve_stats'].append([p2_ace_percentage, p2_df_percentage, p2_1st_combined,
                               p2_2nd_combined, p2_return_1st, p2_return_2nd])
     
-    # update player age, height
+    # update player age, height, rank
+    p1['rank'] = p1_rank
+    p2['rank'] = p2_rank
     p1['age'] = p1_age
     p2['age'] = p2_age
     p1['height'] = p1_height
@@ -307,7 +320,7 @@ def write_row(writer, row, player_dict, p1_winner):
                         ace_30, df_30, first_serve_30, second_serve_30, first_return_30, second_return_30,
                         ace_20, df_20, first_serve_20, second_serve_20, first_return_20, second_return_20,
                         ace_10, df_10, first_serve_10, second_serve_10, first_return_10, second_return_10,
-                        p1_rank, p2_rank,
+                        rankings_diff,
                         p1_win])
     # update glicko ratings and wins and losses
     update_ratings(p1, p2, p1_win, tourney_surface)

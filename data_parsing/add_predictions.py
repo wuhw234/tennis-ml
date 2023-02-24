@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import tensorflow as tf
 import csv
+import pickle
 
 def add_predictions(predictions, path):
     all_rows = []
@@ -14,7 +15,7 @@ def add_predictions(predictions, path):
     header_row.append('p1_prediction')
 
     for i in range(1, len(all_rows)):
-        all_rows[i].append(predictions[i-1].tolist()[0])
+        all_rows[i].append(predictions[i-1])
 
     write_predictions(all_rows, path)
 
@@ -25,7 +26,7 @@ def write_predictions(rows, path):
             writer.writerow(row)
 
         
-def get_predictions(hidden_layer, learning_rate, dropout, trial):
+def get_predictions():
     dataframe = pd.read_csv('data/paired_odds.csv')
     dataframe.pop('p1_win')
     dataframe.pop('match_hash')
@@ -38,16 +39,13 @@ def get_predictions(hidden_layer, learning_rate, dropout, trial):
 
     dataframe_features = dataframe.copy()
 
-    features_dict = {name: np.array(value) for name, value in dataframe_features.items()}
-    # print(type(features_dict['is_hard']))
-
-    reloaded = tf.keras.models.load_model(f'neural_network/hidden{hidden_layer}lr{learning_rate}dropout{dropout}trial{trial}')
-    # reloaded = tf.keras.models.load_model(f'neural_network/test0')
+    model = pickle.load(open('random_forest/model.sav', 'rb'))
 
 
-    predictions = reloaded.predict(features_dict)
+    predictions = model.predict_proba(dataframe_features)
+    parsed_predictions = [prediction[1] for prediction in predictions]
 
-    return predictions
+    return parsed_predictions
 
 if __name__ == '__main__':
     get_predictions(0, 0, 0, 0)
