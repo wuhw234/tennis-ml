@@ -356,13 +356,10 @@ def get_recent_rating(player):
     rating_20 = Player()
     rating_10 = Player()
     recent_matches, recent_dev, recent_results = player['recent_matches'], player['recent_dev'], player['recent_results']
-    if not recent_matches:
-        return rating_30.getRating()
-    
-    rating_30.update_player(recent_matches, recent_dev, recent_results)
-    rating_20.update_player(recent_matches[10:], recent_dev[10:], recent_dev[10:])
-    rating_10.update_player(recent_matches[20:], recent_dev[20:], recent_dev[20:])
 
+    rating_30.update_player(recent_matches, recent_dev, recent_results)
+    rating_20.update_player(recent_matches[10:], recent_dev[10:], recent_results[10:])
+    rating_10.update_player(recent_matches[20:], recent_dev[20:], recent_results[20:])
 
     return rating_30.getRating(), rating_20.getRating(), rating_10.getRating()
 
@@ -468,4 +465,4 @@ def standardize_name(name):
     return lower
 
 if __name__ == '__main__':
-    get_data(2010, 2023, 'data/matches_test.csv')
+    get_data(2010, 2023, 'data/matches.csv')

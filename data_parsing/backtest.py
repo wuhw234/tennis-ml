@@ -114,11 +114,10 @@ def invalid_entry(row):
 
 
 if __name__ == '__main__':
-    unpaired_csv = 'data/matches_test.csv'
-    paired_csv = 'data/paired_odds.csv'
-    # get_data(2010, 2023, unpaired_csv)
-    odds_dict = get_csv_info(2010, 2023)
-    pair_data(odds_dict, unpaired_csv, paired_csv)
+    # unpaired_csv = 'data/matches.csv'
+    # paired_csv = 'data/paired_odds.csv'
+    # # get_data(2010, 2023, unpaired_csv)
+    # odds_dict = get_csv_info(2010, 2023)
+    # pair_data(odds_dict, unpaired_csv, paired_csv)
     predictions = get_predictions()
     add_predictions(predictions, 'data/predictions.csv')
-                    

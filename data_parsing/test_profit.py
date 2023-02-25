@@ -85,9 +85,9 @@ def test():
     return min_balance
         
 
-def kelly(balance, odds, predicted):
+def kelly(balance, prob, predicted):
     theta_squared = 0.3
-    decimal_odds = 1/odds
+    decimal_odds = 1/prob
     p = predicted
     b = decimal_odds - 1
     fraction = (((b+1) * (p) - 1) ** 2) / (((b+1)*(p) - 1) ** 2 + (b+1) ** 2 * theta_squared)
