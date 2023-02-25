@@ -8,8 +8,8 @@ finished
 20*
 training*
 hidden*
-model.sav
-players.pickle
 matches.csv
 paired_odds.csv
+players.pickle
 predictions.csv
+model.sav
