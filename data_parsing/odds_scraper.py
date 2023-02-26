@@ -12,15 +12,17 @@ from get_matches import standardize_name
 
 def get_odds():
     fanduel_url = input('Enter the Fanduel url: ')
+    betmgm_url = input('Enter BetMGM url: ')
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
-
-    fanduel_html = get_page_html(driver, fanduel_url)
-
     match_odds = {}
 
-    get_fanduel_matches(fanduel_html, match_odds)
-
+    if fanduel_url:
+        fanduel_html = get_page_html(driver, fanduel_url)
+        get_fanduel_matches(fanduel_html, match_odds)
+    if betmgm_url:
+        betmgm_html = get_mgm_html(driver, betmgm_url)
+        get_mgm_matches(betmgm_html, match_odds)
 
     return match_odds
 
@@ -64,6 +66,35 @@ def get_fanduel_matches(fanduel_html, match_odds):
         match_odds[hash]['p1_prob'].append((p1_prob, 'Fanduel'))
         match_odds[hash]['p2_prob'].append((p2_prob, 'Fanduel'))
     
+def get_mgm_matches(mgm_html, match_odds):
+    soup = BeautifulSoup(mgm_html, 'html.parser')
+    all_matches = soup.select('ms-event.grid-event')
+
+    for match in all_matches:
+        is_live = match.select('i.live-icon')
+        if is_live:
+            continue
+        players = match.select('div.participant')
+        player1, player2 = players[0].find(text=True, recursive=False), players[1].find(text=True, recursive=False)
+        player1, player2 = standardize_name(player1), standardize_name(player2)
+        
+        odds = match.find_all('ms-font-resizer')
+        player1_odds, player2_odds = int(odds[0].text), int(odds[1].text)
+
+        if player1 > player2:
+            player1, player2 = player2, player1
+            player1_odds, player2_odds = player2_odds, player1_odds
+        p1_prob, p2_prob = moneyline_to_probability(player1_odds), moneyline_to_probability(player2_odds)
+
+
+        hash = hash_match(player1, player2)
+        if hash not in match_odds:
+            match_odds[hash] = {}
+            match_odds[hash]['p1_prob'] = []
+            match_odds[hash]['p2_prob'] = []
+
+        match_odds[hash]['p1_prob'].append((p1_prob, 'BetMGM'))
+        match_odds[hash]['p2_prob'].append((p2_prob, 'BetMGM'))
 
 def moneyline_to_probability(odds):
     if odds < 0:
@@ -80,6 +111,12 @@ def get_page_html(driver, url):
         page_source = driver.page_source
 
     return page_source
+
+def get_mgm_html(driver, url):
+    driver.get(url)
+    WebDriverWait(driver, timeout=15).until(EC.presence_of_element_located((By.CLASS_NAME, 'event-group')))
+
+    return driver.page_source
 
 
 def hash_match(player1, player2):

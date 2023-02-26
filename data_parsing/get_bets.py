@@ -15,10 +15,11 @@ def get_bets():
         if p1 not in player_dict or p2 not in player_dict:
             # print('not in dictionary')
             continue
+        # print('in dictionary')
         p1_predicted_prob = get_row_entry(player_dict[p1], player_dict[p2], country, surface, is_bo5)
         p2_predicted_prob = 1 - p1_predicted_prob
-        p1_odds_prob, book1 = max(odds_dict[hash]['p1_prob'])
-        p2_odds_prob, book2 = max(odds_dict[hash]['p2_prob'])
+        p1_odds_prob, book1 = min(odds_dict[hash]['p1_prob'])
+        p2_odds_prob, book2 = min(odds_dict[hash]['p2_prob'])
 
         if p1_predicted_prob > p1_odds_prob:
             bet_size = kelly(1000, p1_odds_prob, p1_predicted_prob)
