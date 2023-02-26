@@ -13,16 +13,21 @@ from get_matches import standardize_name
 def get_odds():
     fanduel_url = input('Enter the Fanduel url: ')
     betmgm_url = input('Enter BetMGM url: ')
+    bovada_url = input('Enter Bovada url: ')
+    
 
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     match_odds = {}
 
     if fanduel_url:
-        fanduel_html = get_page_html(driver, fanduel_url)
+        fanduel_html = get_fanduel_html(driver, fanduel_url)
         get_fanduel_matches(fanduel_html, match_odds)
     if betmgm_url:
         betmgm_html = get_mgm_html(driver, betmgm_url)
         get_mgm_matches(betmgm_html, match_odds)
+    if bovada_url:
+        bovada_html = get_bovada_html(driver, bovada_url)
+        get_bovada_matches(bovada_html, match_odds)
 
     return match_odds
 
@@ -86,7 +91,6 @@ def get_mgm_matches(mgm_html, match_odds):
             player1_odds, player2_odds = player2_odds, player1_odds
         p1_prob, p2_prob = moneyline_to_probability(player1_odds), moneyline_to_probability(player2_odds)
 
-
         hash = hash_match(player1, player2)
         if hash not in match_odds:
             match_odds[hash] = {}
@@ -96,13 +100,48 @@ def get_mgm_matches(mgm_html, match_odds):
         match_odds[hash]['p1_prob'].append((p1_prob, 'BetMGM'))
         match_odds[hash]['p2_prob'].append((p2_prob, 'BetMGM'))
 
+def get_bovada_matches(bovada_html, match_odds):
+    soup = BeautifulSoup(bovada_html, 'html.parser')
+    container = soup.select('div.next-events-bucket')[0]
+    matches_container = container.select('div.grouped-events')[0]
+    matches = matches_container.select('section.coupon-content.more-info')
+    for match in matches:
+        competitors = match.select('div.competitors')[0]
+        spans = competitors.select('span.name')
+        p1, p2 = standardize_name(spans[0].text), standardize_name(spans[1].text)
+        odds_container = match.select('sp-outcomes.markets-container')[0]
+        moneyline = odds_container.select('sp-two-way-vertical')[1]
+        odds = moneyline.select('span.bet-price')
+        p1_odds, p2_odds = odds[0].text, odds[1].text
+        if 'EVEN' in p1_odds:
+            p1_odds = 100
+        else:
+            p1_odds = int(p1_odds)
+        if 'EVEN' in p2_odds:
+            p2_odds = 100
+        else:
+            p2_odds = int(p2_odds)
+
+        if p1 > p2:
+            p1, p2 = p2, p1
+            p1_odds, p2_odds = p2_odds, p1_odds
+        p1_prob, p2_prob = moneyline_to_probability(p1_odds), moneyline_to_probability(p2_odds)
+        hash = hash_match(p1, p2)
+        if hash not in match_odds:
+            match_odds[hash] = {}
+            match_odds[hash]['p1_prob'] = []
+            match_odds[hash]['p2_prob'] = []
+
+        match_odds[hash]['p1_prob'].append((p1_prob, 'Bovada'))
+        match_odds[hash]['p2_prob'].append((p2_prob, 'Bovada'))
+
 def moneyline_to_probability(odds):
     if odds < 0:
         return ((-odds) / (-odds + 100))
     else:
         return (100 / (odds+100))
     
-def get_page_html(driver, url):
+def get_fanduel_html(driver, url):
     driver.get(url)
     WebDriverWait(driver, timeout=15).until(EC.url_to_be(url))
     curr_url = driver.current_url
@@ -118,6 +157,16 @@ def get_mgm_html(driver, url):
 
     return driver.page_source
 
+def get_bovada_html(driver, url):
+    driver.get(url)
+    WebDriverWait(driver, timeout=15).until(EC.presence_of_element_located((By.CLASS_NAME, 'next-events-bucket')))
+
+    return driver.page_source
+
 
 def hash_match(player1, player2):
     return player1 + '/' + player2
+
+
+if __name__ == '__main__':
+    get_odds()
