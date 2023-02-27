@@ -3,12 +3,42 @@ import numpy as np
 import pandas as pd
 from test_profit import kelly
 from odds_scraper import get_odds
+import PySimpleGUI as sg
 
-def get_bets():
+def create_window():
+    sg.theme('DarkAmber')
+    layout = [  [sg.Text('Surface'), sg.Combo(['Hard', 'Clay', 'Grass'])],
+                [sg.Text('Best Of'), sg.Combo(['3', '5'])],
+                [sg.Text('Country Code'), sg.InputText()],
+                [sg.Text('Fanduel Url'), sg.InputText()],
+                [sg.Text('BetMGM Url'), sg.InputText()],
+                [sg.Text('Bovada Url'), sg.InputText()],
+                [sg.OK(), sg.Cancel()]]
+    
+    window = sg.Window('Bet scraper', layout)
+    while True:
+        event, values = window.read()
+        if event == sg.WIN_CLOSED or event == 'Cancel': # if user closes window or clicks cancel
+            break
+        else: # if user clicks ok
+            if not values[0] or not values[1] or not values[2] or not (values[3] or values[4] or values[5]):
+                sg.popup_error('Error: missing fields')
+            else:
+                surface = values[0][0].lower()
+                best_of = values[1]
+                country = values[2]
+                fanduel_url, mgm_url, bovada_url = values[3], values[4], values[5]
+                bets = get_bets(surface, best_of, country, fanduel_url, mgm_url, bovada_url)
+                string_bets = '\n'.join(bets)
+                sg.popup_ok(string_bets)
+
+    window.close()
+
+def get_bets(surface, best_of, country, fanduel_url, mgm_url, bovada_url):
     player_dict = get_player_dict()
-    surface, best_of, country = get_tourney_info()
     is_bo5 = 1 if best_of == '5' else 0
-    odds_dict = get_odds()
+    odds_dict = get_odds(fanduel_url, mgm_url, bovada_url)
+    bets = []
     # print(odds_dict)
     for hash in odds_dict.keys():
         p1, p2 = hash.split('/')
@@ -23,12 +53,16 @@ def get_bets():
 
         if p1_predicted_prob > p1_odds_prob:
             bet_size = kelly(1000, p1_odds_prob, p1_predicted_prob)
-            print(f'Bet {bet_size} on {p1} at {book1}')
-            print(f'Predicted: {p1_predicted_prob} Odds: {p1_odds_prob}\n')
+            if bet_size > 5:
+                bets.append(f'Bet {bet_size} on {p1} at {book1}')
+                bets.append(f'Predicted: {p1_predicted_prob} Odds: {p1_odds_prob}\n')
         elif p2_predicted_prob > p2_odds_prob:
             bet_size = kelly(1000, p2_odds_prob, p2_predicted_prob)
-            print(f'Bet {bet_size} on {p2} at {book2}')
-            print(f'Predicted: {p2_predicted_prob} Odds: {p2_odds_prob}\n')
+            if bet_size > 5:
+                bets.append(f'Bet {bet_size} on {p2} at {book2}')
+                bets.append(f'Predicted: {p2_predicted_prob} Odds: {p2_odds_prob}\n')
+
+    return bets
 
 
 def get_row_entry(p1, p2, tourney_country, tourney_surface, is_bo5):
@@ -172,5 +206,4 @@ def test():
     print(kelly(1000, 0.3356, prob))
 
 if __name__ == '__main__':
-    get_bets()
-    # test()
+    create_window()

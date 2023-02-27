@@ -10,12 +10,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 from get_matches import standardize_name
 
-def get_odds():
-    fanduel_url = input('Enter the Fanduel url: ')
-    betmgm_url = input('Enter BetMGM url: ')
-    bovada_url = input('Enter Bovada url: ')
-    
-
+def get_odds(fanduel_url, betmgm_url, bovada_url):
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
     match_odds = {}
 
